@@ -1,16 +1,56 @@
 @import "style";
 
+.bg-light {
+  background: @noise #EEE;
+  padding: 40px;
+}
+
+.bg-dark {
+  background: @noise #121212;
+  padding: 40px;
+}
+
 .test {
   width: 200px;
   height: 200px;
   display: inline-block;
-  
+  .box-sizing( border-box );
 }
 
-.noiseBackground {
-  .noiseBackground( @lavender );
+.noiseBackgroundLight {
+  .noiseBackground( #FFF );
+}
+
+.noiseBackgroundMid {
+  .noiseBackground( @rouge );
+}
+
+.noiseBackgroundDark {
+  .noiseBackground( @night );
 }
 
 .noiseBackground2 {
   .noiseBackground( @rouge, darken( @rouge, 15% ) );
+}
+
+.gradientVertical {
+  .gradient( "vertical", @lime, @lemonlime );
+}
+
+.gradientWash {
+  .gradient( "wash", @night, @teal, @hotpink, 100%, top left );
+}
+
+.bg-light > .gradiatedBorder {
+  .gradiatedBorder( darken( @rouge, 10% ) );
+  background: @rouge;
+}
+
+.bg-dark > .gradiatedBorder {
+  .gradiatedBorder( #EEE );
+  background: rgba( 255, 255, 255, .4);
+}
+
+.glow {
+  .glow( @lavender );
 }

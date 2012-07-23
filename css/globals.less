@@ -4,8 +4,12 @@
 
 // Backgound styles
 
-.noiseBackground( @color ) {
+.noiseBackground( @color ) when ( lightness( @color ) =< 50% ) {
   background: @color @noise;
+}
+
+.noiseBackground( @color ) when ( lightness( @color ) > 50%  ) {
+  background: @color @noise2;
 }
 
 .noiseBackground( @color, @color2 ) {
@@ -17,6 +21,7 @@
 }
 
 ._gradient(@angle, @startCol, @stopCol, @startLoc, @endLoc, @startPerc, @stopPerc) {
+   // This is a private mixin used by gradient functions
    background: -webkit-gradient(linear,left @startLoc,left @endLoc,color-stop(@startPerc,@startCol),color-stop(@stopPerc,@stopCol));
    background: -webkit-linear-gradient(@angle @startLoc,@startCol @startPerc,@stopCol @stopPerc);
    background: -moz-linear-gradient(@angle @startLoc,@startCol @startPerc,@stopCol @stopPerc);
@@ -56,20 +61,21 @@
 .gradiatedBorder( @color ) {
   border: 1px solid darken( @color, 10% );
   border-top-color: darken( @color, 5% );
-  border-bottom-color: darken( @color, 15% );
+  border-bottom-color: darken( @color, 20% );
 }
 
-.gradiatedBorder( @color ) when ( lightness( @color ) > 40% ) {
+.gradiatedBorder( @color ) when ( lightness( @color ) > 50% ) {
   border: 1px solid darken( @color, 20% );
   border-top-color: darken( @color, 10% );
   border-bottom-color: darken( @color, 25% );
 }
 
-.gradiatedBorder( @colorTop, @color, @colorBottom ) {
+.gradiatedBorder( @color, @topColor, @bottomColor ) when ( iscolor( @topColor ) ) {
   border: 1px solid @color;
-  border-top-color: @colorTop;
-  border-bottom-color: @colorBottom;
+  border-top-color: @topColor;
+  border-bottom-color: @bottomColor;
 }
+
 
 .glow( @color, @shadow: 0 1px 2px 0 rgba( 0, 0, 0, .2 ) ) {
   box-shadow: inset 0 1px 0 0 lighten( @color, 20% ),
@@ -85,6 +91,16 @@
   -o-transition: @arguments;
   -ms-transition: @arguments;
   transition: @arguments;
+}
+
+// Positioning & hacks
+
+.box-sizing( @property ) {
+  // https://developer.mozilla.org/En/CSS/Box-sizing
+  -webkit-box-sizing: @property; // Chrome 10-
+  -moz-box-sizing: @property;
+  -ms-box-sizing: @property; // IE 8+
+  box-sizing: @property; // Opera, Safari 5.1+, Chrome 10+
 }
 
 .clearfix() {

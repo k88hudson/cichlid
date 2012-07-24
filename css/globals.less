@@ -2,7 +2,9 @@
 
 @textColor: #222;
 
-// Backgound styles
+// ----------------------------------------
+// Backgrounds
+// ----------------------------------------
 
 .noiseBackground( @color ) when ( lightness( @color ) =< 50% ) {
   background: @color @noise;
@@ -20,6 +22,25 @@
    background: @noise, linear-gradient(top, @color);
 }
 
+._gradient( @args ) when not ( isstring( @args ) ) {
+   // This is a private mixin used by gradient functions
+   background: -webkit-linear-gradient( @args );
+   background: -moz-linear-gradient( @args );
+   background: -ms-linear-gradient( @args );
+   background: -o-linear-gradient( @args );
+   background: linear-gradient( @args );
+}
+
+._gradient( @args ) when not ( isstring( @args ) ) {
+   // This is a private mixin used by gradient functions
+   background: -webkit-linear-gradient( @args );
+   background: -moz-linear-gradient( @args );
+   background: -ms-linear-gradient( @args );
+   background: -o-linear-gradient( @args );
+   background: linear-gradient( @args );
+} 
+
+
 ._gradient(@angle, @startCol, @stopCol, @startLoc, @endLoc, @startPerc, @stopPerc) {
    // This is a private mixin used by gradient functions
    background: -webkit-gradient(linear,left @startLoc,left @endLoc,color-stop(@startPerc,@startCol),color-stop(@stopPerc,@stopCol));
@@ -36,6 +57,23 @@
   background: -o-linear-gradient(top, @color @from, @color2 @to);
   background: -ms-linear-gradient(top, @color @from, @color2 @to);
   background: linear-gradient(top, @color @from, @color2 @to);
+}
+
+.gradient( "horizontal", @color, @color2, @from: 0%, @to: 100% ) {
+  background: -moz-linear-gradient(left, @color @from, @color2 @to);
+  background: -webkit-linear-gradient(left, @color @from, @color2 @to);
+  background: -o-linear-gradient(left, @color @from, @color2 @to);
+  background: -ms-linear-gradient(left, @color @from, @color2 @to);
+  background: linear-gradient(left, @color @from, @color2 @to);
+}
+
+.gradient( "radial", @color, @color2, @start: 50%, @from: 0%, @to: 100% ) {
+  background: -moz-radial-gradient( center @start, @color @from, @color2 @to );
+  // This looks like crap in FF. 
+  background: -webkit-radial-gradient(center @start, @color @from, @color2 @to);
+  background: -o-radial-gradient( center @start, @color @from, @color2 @to );
+  background: -ms-radial-gradient( center @start, @color @from, @color2 @to );
+  background: radial-gradient( center @start, @color @from, @color2 @to );
 }
 
 .gradient( "wash", @color, @color2, @color3, @coverage: 100%, @corner: top right ) {
@@ -58,6 +96,39 @@
   background-clip: fixed;
 }
 
+.gradient(){
+  background-clip: padding-box;
+  background-repeat: no-repeat;
+}
+
+.colorBlocks( @color, @color2 ) {
+  .gradient( left, @color1 0%, @color2 100% );
+}
+
+.colorBlocks( @color, @color2, @color3 ) {
+  .gradient( left, 
+    @color1 0%, @color1 33.333%,
+    @color2 33.333%, @color2 66.667%,
+    @color3 33.333%, @color3 66.667%,
+  );
+}
+
+.colorBlocks( @color, @color2, @color3, @color4 ) {
+  .gradient( left, @color1 0%, @color2 100% );
+}
+
+.colorBlocks( @color, @color2, @color3, @color4, @color5 ) {
+  .gradient( left, @color1 0%, @color2 100% );
+}
+
+.colorBlocks( @color, @color2, @color3, @color4, @color5, @color6 ) {
+  .gradient( left, @color1 0%, @color2 100% );
+}
+
+// ----------------------------------------
+// Special Lighting Effects
+// ----------------------------------------
+
 .gradiatedBorder( @color ) {
   border: 1px solid darken( @color, 10% );
   border-top-color: darken( @color, 5% );
@@ -76,14 +147,45 @@
   border-bottom-color: @bottomColor;
 }
 
-
-.glow( @color, @shadow: 0 1px 2px 0 rgba( 0, 0, 0, .2 ) ) {
+.glow( @color, @shadow: 0 1px 2px 0 rgba( 0, 0, 0, .2 ) ) when not ( isstring( @shadow ) ) {
   box-shadow: inset 0 1px 0 0 lighten( @color, 20% ),
-    inset 1px 0 0 0 lighten( @color, 2%),
-    inset -1px 0 0 0 lighten( @color, 2%),
-    inset 0 -1px 0 0 lighten( @color, 2%),
+    inset 1px 0 0 0 lighten( @color, 4%),
+    inset -1px 0 0 0 lighten( @color, 4%),
+    inset 0 -1px 0 0 lighten( @color, 4%),
+    @shadow;
+  .gradiatedBorder( darken( @color, 5% ) );
+}
+
+.glow( @color, "light" ) {
+  box-shadow: inset 0 1px 0 0 lighten( @color, 20% ),
+    inset 1px 0 0 0 lighten( @color, 4%),
+    inset -1px 0 0 0 lighten( @color, 4%),
+    inset 0 -1px 0 0 lighten( @color, 4%),
+    0 1px 3px 0 rgba( 0, 0, 0, .1 );
+  .gradiatedBorder( darken( @color, 10% ) );
+}
+
+.glow( @color, "dark" ) {
+  box-shadow: inset 0 1px 0 0 lighten( @color, 10% ),
+    inset 1px 0 0 0 lighten( @color, 4%),
+    inset -1px 0 0 0 lighten( @color, 4%),
+    inset 0 -1px 0 0 lighten( @color, 4%),
+    0 1px 3px 0 rgba( 0, 0, 0, .4 );
+}
+
+.glowTop( @color, @shadow) {
+  box-shadow: inset 0 1px 0 0 lighten( @color, 10% ),
     @shadow;
 }
+
+.punched( @alpha1: 0.7, @alpha2: 0.1 ) {
+  box-shadow: inset 0 1px 1px 0 rgba( 0, 0, 0, @alpha1 ),
+    0 1px 0 0 rgba( 255, 255, 255, @alpha2);
+}
+
+// ----------------------------------------
+// Animations
+// ----------------------------------------
 
 .transition( @arguments: all .2s ease ) {
   -webkit-transition: @arguments;
@@ -93,7 +195,9 @@
   transition: @arguments;
 }
 
-// Positioning & hacks
+// ----------------------------------------
+// Positioning
+// ----------------------------------------
 
 .box-sizing( @property ) {
   // https://developer.mozilla.org/En/CSS/Box-sizing
@@ -111,4 +215,96 @@
     display: table; 
   }
   &:after { clear: both; }
+}
+
+// ----------------------------------------
+// UI
+// ----------------------------------------
+
+// Buttons and inputs
+
+// Drop Downs
+.dropDown( @borderRadius, @textHeight, @padding, @color, @color2, @textColor, @insetColor, @lightness ) {
+  border-radius: @borderRadius;
+  font-size: 13px;
+  .box-sizing( border-box );
+
+  .drop-down-header {
+    position: relative;
+    padding: @padding * 1.5 @padding;
+    line-height: @textHeight;
+    border: 1px solid darken( @color, 40% );
+    border-radius: @borderRadius @borderRadius 0 0;
+    .gradient( "vertical", @color, @color2 ); 
+    .glowTop( @color, 0 1px 2px 0 rgba( 0, 0, 0, .7 ) );
+    .box-sizing( border-box );
+  }
+
+  .drop-down-body > ul {
+    .listReset();
+    border-radius: 0;
+    border: 1px solid darken( @color, 40% );
+    border-top: none;
+
+    > li {
+      line-height: @textHeight;
+      color: @textColor;
+      padding: @padding;
+      border-top: 1px solid lighten( @color, 15% );
+      border-bottom: 1px solid darken( @color, 30% );
+      background: @color;
+      .box-sizing( border-box );
+      .clearfix();
+    }
+  }
+
+  .ui-count {
+    height: @textHeight;
+    line-height: @textHeight;
+    display: inline-block;
+    background: @_insetColor;
+    padding: 0 11px;
+    color: lighten( @textColor, 10% );
+    font-size: 11px;
+    line-height: @textHeight;
+    border-radius: 11px;
+    text-shadow: 0 -1px 0 rgba( 0, 0, 0, .6 );
+    .punched();
+    .box-sizing( border-box );
+  }
+
+  .ui-inset-input {
+    width: 250px;
+    display: inline-block;
+    height: @textHeight;
+    line-height: @textHeight;
+    border: none;
+    background: @_insetColor;
+    padding: 0 10px;
+    color: @textColor;
+    font-size: 11px;
+    border-radius: 9px;
+    text-shadow: 0 -1px 0 #000;
+    .punched();
+    .box-sizing( border-box );
+
+    &:focus {
+      outline: none;
+      text-shadow: 0 1px 1px #000;
+      color: #FFF;
+      .gradient( "vertical", lighten( @_insetColor, 5% ), lighten( @_insetColor, 10% ) );
+      .punched( .9, .3 );
+    }
+    
+  }
+
+} // Drop Downs
+
+// Helpers for positioning, etc.
+.UIHelpers() {
+
+  .ui-float-right {
+    float: right;
+  }
+
 }

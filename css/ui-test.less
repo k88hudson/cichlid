@@ -1,0 +1,140 @@
+@import "globals";
+@import "colors";
+@import "normalize";
+@import "ui";
+@import "main";
+@import "mediaqueries";
+@import "utilities";
+@import "print";
+
+// Grid calculations
+@gridTotal: 1080px;
+@gridMargin: 20px;
+@gridDivisions: 12;
+
+@gridUnit: ( @gridTotal - ( @gridMargin * ( @gridDivisions - 1 ) ) ) / @gridDivisions;
+
+// Main Sections
+@headerHeight: 1 * @gridUnit;
+@editorWidth: 4 * @gridUnit;
+@trayHeight: 3 * @gridUnit;
+@collapsed: 1 * @gridUnit;
+
+// Video
+@videoWidth: 5 * @gridUnit;
+@videoHeight: @videoWidth * .56125;
+
+// Utility
+@maxZ: 10000;
+
+/*********************************************************
+* Base
+*/
+
+html {
+  background: @noise #121212;
+}
+
+.butter-wrapper {
+  position: absolute;
+  top: @headerHeight;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+section {
+  .box-sizing( border-box );
+  border: 5px solid;
+}
+
+
+/*********************************************************
+* Header
+*/
+
+header {
+  position: relative;
+  height: @headerHeight;
+  background: yellow;
+  z-index: @maxZ;
+}
+
+/*********************************************************
+* Editor
+*/
+
+.butter-editor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: green;
+  width: @editorWidth;
+  border-color: darkGreen;
+}
+
+/*********************************************************
+* Stage
+*/
+
+.butter-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: @editorWidth;
+  bottom: @trayHeight;
+  background: red;
+  border-color: darkRed;
+}
+
+.embed-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: @videoWidth;
+  height: @videoHeight;
+  background: black;
+  margin: -@videoHeight/2 0 0 -@videoWidth/2;
+}
+
+
+/*********************************************************
+* Tray
+*/
+
+.butter-tray {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: @editorWidth;
+  height: @trayHeight;
+  background: blue;
+  border-color: darkBlue;
+}
+
+
+/*********************************************************
+* Collapsed states
+*/
+
+.butter-editor-collapsed {
+  .butter-editor {
+    width: @collapsed;
+  }
+  .butter-stage {
+    right: @collapsed;
+  }
+  .butter-tray {
+    right: @collapsed;
+  }
+}
+
+.butter-tray-collapsed {
+  .butter-tray{
+    height: @collapsed;
+  }
+  .butter-stage {
+    bottom: @collapsed;
+  }
+}

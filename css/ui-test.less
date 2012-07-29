@@ -8,24 +8,42 @@
 @import "print";
 
 // Grid calculations
-@gridTotal: 1080px;
+@gridTotal: 960px;
 @gridMargin: 20px;
 @gridDivisions: 12;
 
-@gridUnit: ( @gridTotal - ( @gridMargin * ( @gridDivisions - 1 ) ) ) / @gridDivisions;
+@gridUnit: ( @gridTotal - @gridMargin * ( @gridDivisions - 1 ) ) / @gridDivisions;
+.grid( @property, @units ) {
+  @_value: @gridUnit * @units + @gridMargin * ( @units - 1 );
+  ignore: ~`"''; @{property}: @{_value};"`;
+}
 
 // Main Sections
-@headerHeight: 1 * @gridUnit;
-@editorWidth: 4 * @gridUnit;
-@trayHeight: 3 * @gridUnit;
-@collapsed: 1 * @gridUnit;
+@headerHeight: 1;
+@editorWidth: 4;
+@trayHeight: 3;
+@collapsed: 0.7;
+@controlsHeight: 0.7; // same a collapsed
+
+// Logo
+@logoWidth: 52px;
 
 // Video
-@videoWidth: 5 * @gridUnit;
+@videoWidth: 700px;
 @videoHeight: @videoWidth * .56125;
+
+//Controls
+
 
 // Utility
 @maxZ: 10000;
+
+// Colors
+@baseDark: #242F33;
+@baseLight: #EFEFEF;
+@textShadow: 0 -2px 0 #000;
+@rouge: #CB2408;
+
 
 /*********************************************************
 * Base
@@ -37,7 +55,7 @@ html {
 
 .butter-wrapper {
   position: absolute;
-  top: @headerHeight;
+  .grid( top, @headerHeight );
   left: 0;
   right: 0;
   bottom: 0;
@@ -45,7 +63,75 @@ html {
 
 section {
   .box-sizing( border-box );
-  border: 5px solid;
+  .transition( all .5s ease );
+}
+
+/*********************************************************
+* Buttons
+*/
+
+@buttonTopSpacing: 15px;
+
+.button() {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.btn-shadow( @color ) {
+  box-shadow: 0 -1px 0 lighten( @color, 3% ),
+  0 1px 0 darken( @color, 14% ),
+  1px 0 0 darken( @color, 5% ),
+  -1px 0 0 darken( @color, 5% );
+}
+
+.btn-shadow( @color, "hover" ) {
+  box-shadow: 0 -1px 0 lighten( @color, 10% ),
+    0 1px 0 darken( @color, 14% ),
+    1px 0 0 darken( @color, 5% ),
+    -1px 0 0 darken( @color, 5% ),
+    0 2px 2px rgba( 0, 0, 0, 0.5 );
+}
+
+[class^="butter-btn-"] {
+  .button();
+  &:hover {
+    cursor: pointer;
+  }
+  > .icon {
+    position: relative;
+    top: 2px;
+    margin-right: 5px;
+  }
+}
+
+[class^="butter-btn-"] + [class^="butter-btn-"] {
+  margin-left: 3px;
+}
+
+.butter-btn-dark {
+  color: #EEE;
+  border-top: 1px solid #000;
+  text-shadow: @textShadow;
+  .btn-shadow( @baseDark );
+  .gradient( "vertical", @baseDark, darken( @baseDark, 5% ) );
+  &:hover {
+    color: #FFF;
+    .btn-shadow( @baseDark, "hover" );
+  }
+}
+
+.butter-btn-red {
+  color: #EEE;
+  text-shadow:0 -1px 0 darken( @rouge, 20% );
+  .btn-shadow( @rouge );
+  .gradient( "vertical", @rouge, darken( @rouge, 6% ) ); 
+  &:hover {
+    color: #FFF;
+    .btn-shadow( @rouge, "hover" );
+  }
 }
 
 
@@ -55,23 +141,109 @@ section {
 
 header {
   position: relative;
-  height: @headerHeight;
-  background: yellow;
+  .grid( height, @headerHeight );
+  .gradient( "vertical", @baseDark, darken( @baseDark, 5% ) );
   z-index: @maxZ;
+  border: 1px solid #111;
+  border-width: 1px 0 1px 0;
+  box-shadow: 0 1px 0 fade( lighten( @baseDark, 10% ), 25%);
+}
+
+#logo {
+  padding-left: @logoWidth;
+  font-size: 16px;
+  font-weight: 300;
+  margin-left: @gridMargin;
+  color: @baseLight;
+  text-shadow: 0 -1px 1px #000;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  .grid( height, @headerHeight );
+  .grid( line-height, @headerHeight );
+  background: url( ../img/logo_styled.png ) no-repeat;
+  float: left;
+}
+
+#butter-header-buttons {
+  padding-top: @buttonTopSpacing;
+  margin-right: @gridMargin;
+  float: right;
 }
 
 /*********************************************************
 * Editor
 */
 
+@inputOutline: #CCC;
+@inputFocus: @rouge;
+@inputText: #555;
+
+@inputTextSize: 13px;
+@inputPadding: 5px;
+
 .butter-editor {
   position: absolute;
   top: 0;
-  bottom: 0;
   right: 0;
-  background: green;
-  width: @editorWidth;
-  border-color: darkGreen;
+  .grid( bottom, @trayHeight );
+  .grid( width, @editorWidth );
+  background: @baseLight;
+  box-shadow: -1px 1px 2px fade( #000, 70% ),
+    inset 0 5px 8px -3px fade( #000, 70% ),
+    inset 0 -5px 8px -3px fade( #000, 70% );
+  overflow-x: hidden;
+}
+.butter-editor-close-btn {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  .button();
+   > i {
+    background-position: -456px -72px;
+  }
+  &:hover {
+    
+  }
+}
+.butter-editor-outer {
+  padding: 20px;
+  padding-top: 40px;
+}
+
+.butter-editor-inner {
+  opacity: 1;
+  h3 {
+    margin-top: 0;
+  }
+
+  label {
+    font-size: 13px;
+    display: block;
+    padding: @inputPadding 0;
+  }
+
+  fieldset {
+    margin-bottom: 13px;
+  }
+
+  input,
+  textarea {
+    border: 1px solid @inputOutline;
+    border-top-color: darken( @inputOutline, 10% );
+    border-radius: 2px;
+    color: @inputText;
+    padding: @inputPadding;
+    font-size: @inputTextSize;
+    box-sizing: border-box;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+      border: 1px solid fade( @inputFocus, 50% );
+      box-shadow: 0 0 4px fade( @inputFocus, 50% );
+    }
+  }
+
 }
 
 /*********************************************************
@@ -83,19 +255,27 @@ header {
   top: 0;
   left: 0;
   right: @editorWidth;
-  bottom: @trayHeight;
-  background: red;
-  border-color: darkRed;
+  .grid( right, @editorWidth );
+  .grid( bottom, @trayHeight );
+  .gradient( "wash", darken( @baseDark, 5% ), darken( @baseDark, 10% ), lighten( @baseDark, 5% ), @noiseLight );
 }
 
-.embed-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+.butter-embed-container {
   width: @videoWidth;
   height: @videoHeight;
-  background: black;
-  margin: -@videoHeight/2 0 0 -@videoWidth/2;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.butter-media-source {
+  padding: 10px 0;
+}
+
+.butter-video-container {
+  border: 10px;
+  video {
+    width: 100%;
+  }
 }
 
 
@@ -107,10 +287,16 @@ header {
   position: absolute;
   bottom: 0;
   left: 0;
-  right: @editorWidth;
-  height: @trayHeight;
-  background: blue;
-  border-color: darkBlue;
+  right: 0;
+  .grid( height, @trayHeight );
+  background: darken( @baseDark, 5% );
+  overflow: hidden;
+}
+.butter-controls {
+  border: 1px solid #111;
+  border-width: 1px 0 1px 0;
+  .gradient( "vertical", @baseDark, darken( @baseDark, 2% ) );
+  .grid( height, @controlsHeight );
 }
 
 
@@ -119,22 +305,28 @@ header {
 */
 
 .butter-editor-collapsed {
+  .butter-editor-inner {
+    opacity: 0;
+  }
   .butter-editor {
-    width: @collapsed;
+    .grid( width, @collapsed );
   }
   .butter-stage {
-    right: @collapsed;
+    .grid( right, @collapsed );
   }
-  .butter-tray {
-    right: @collapsed;
+  .butter-editor-close-btn > i {
+    background-position: -432px -72px; // left
   }
 }
 
 .butter-tray-collapsed {
+  .butter-editor {
+    .grid( bottom, @collapsed );
+  }
   .butter-tray{
-    height: @collapsed;
+    .grid( height, @collapsed );
   }
   .butter-stage {
-    bottom: @collapsed;
+    .grid( bottom, @collapsed );
   }
 }

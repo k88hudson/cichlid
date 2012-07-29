@@ -28,19 +28,74 @@
 
 </head>
 <body>
-  <header>Butter</header>
-  <div id="wrapper" class="butter-wrapper">
+  <header>
+    <div id="logo">Popcorn</div>
+    <div id="butter-header-buttons">
+      <a id="add-popcorn" class="butter-btn-dark"><i class="icon icon-white icon-comment"></i> Add Popcorn</a>
+      <a class="butter-btn-dark">Save</a>    
+      <a class="butter-btn-dark"><i class="icon icon-white icon-cog"></i> Settings</a>
+      <a class="butter-btn-dark"><i class="icon icon-white icon-share"></i> Share</a>
+    </div> 
+  </header>
+  <div id="wrapper" class="butter-wrapper butter-tray-collapsed">
     <section id="stage" class="butter-stage">
-      <div class="embed-container"></div>
+      <div class="butter-embed-container">
+       <div id="media-source" class="butter-media-source">
+          <a class="butter-btn-dark"><i class="icon icon-white icon-pencil"></i> Edit media</a>
+        </div>
+        <div class="butter-video-container">
+          <video id="video" preload data-butter="media" controls>
+            <source src="http://videos-cdn.mozilla.net/serv/webmademovies/trailer.mp4">
+            <source src="http://videos-cdn.mozilla.net/serv/webmademovies/trailer.ogv">
+            <source src="http://videos-cdn.mozilla.net/serv/webmademovies/trailer.webm">
+          </video>
+        </div>
+      </div>
     </section>
-    <section id="editor" class="butter-editor">Hello world</section>
-    <section id="tray" class="butter-tray"></section>
+    <section id="editor" class="butter-editor">
+        <a id="butter-editor-close-btn" class="butter-editor-close-btn"><i class="icon icon-chevron"></i></a>
+        <div class="butter-editor-outer">
+          <div class="butter-editor-inner">
+            <h3>Text Editor</h3>
+            <fieldset>
+              <label>Text</label>
+              <textarea></textarea>
+            </fieldset>
+            <fieldset>
+              <label>Font size</label>
+              <input type="text" value="This is my input">
+            </fieldset>
+            <fieldset>
+              <label>Text</label>
+              <textarea></textarea>
+            </fieldset>
+            <fieldset>
+              <label>Font size</label>
+              <input type="text" value="This is my input">
+            </fieldset>
+            <fieldset>
+              <label>Text</label>
+              <textarea></textarea>
+            </fieldset>
+            <fieldset>
+              <label>Font size</label>
+              <input type="text" value="This is my input">
+            </fieldset>
+          </div>
+        </div>
+    </section>
+    <section id="tray" class="butter-tray">
+      <div id="controls" class="butter-controls"></div>
+    </section>
   </div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="js/script.js"></script>
   <script>
-    document.getElementById( "editor" ).addEventListener( "click", function(){
+    document.getElementById( "add-popcorn" ).addEventListener( "click", function(){
+      document.getElementById( "wrapper" ).classList.remove( "butter-editor-collapsed" );
+    });
+    document.getElementById( "butter-editor-close-btn" ).addEventListener( "click", function(){
       document.getElementById( "wrapper" ).classList.toggle( "butter-editor-collapsed" );
     });
     document.getElementById( "tray" ).addEventListener( "click", function(){

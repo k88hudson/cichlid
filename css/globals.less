@@ -76,7 +76,7 @@
   background: radial-gradient( center @start, @color @from, @color2 @to );
 }
 
-.gradient( "wash", @color, @color2, @color3, @coverage: 100%, @corner: top right ) {
+.gradient( "wash", @color, @color2, @color3, @noise: @noise, @coverage: 100%, @corner: top right ) {
   background: @noise,
     -moz-linear-gradient( @corner, @color3 0%, fade( @color3, 0% ) @coverage ),
     -moz-linear-gradient(top, @color 0%, @color2 100%);

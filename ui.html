@@ -31,18 +31,23 @@
   <header>
     <div id="logo">Popcorn</div>
     <div id="butter-header-buttons">
+      <!--
       <a id="add-popcorn" class="butter-btn-dark"><i class="icon icon-white icon-comment"></i> Add Popcorn</a>
+      -->
       <a class="butter-btn-dark">Save</a>    
       <a class="butter-btn-dark"><i class="icon icon-white icon-cog"></i> Settings</a>
       <a class="butter-btn-dark"><i class="icon icon-white icon-share"></i> Share</a>
+      <a id="butter-editor-close-btn" class="butter-btn-dark butter-editor-close-btn"><i class="icon icon-white icon-chevron"></i>Editor</a>
     </div> 
   </header>
-  <div id="wrapper" class="butter-wrapper butter-tray-collapsed">
+  <div id="wrapper" class="butter-wrapper">
     <section id="stage" class="butter-stage">
       <div class="butter-embed-container">
+  
        <div id="media-source" class="butter-media-source">
-          <a class="butter-btn-dark"><i class="icon icon-white icon-pencil"></i> Edit media</a>
+          <a class="butter-btn-dark"><i class="icon icon-white icon-th"></i>700 x 500</a>
         </div>
+    
         <div class="butter-video-container">
           <video id="video" preload data-butter="media" controls>
             <source src="http://videos-cdn.mozilla.net/serv/webmademovies/trailer.mp4">
@@ -53,54 +58,57 @@
       </div>
     </section>
     <section id="editor" class="butter-editor">
-        <a id="butter-editor-close-btn" class="butter-editor-close-btn"><i class="icon icon-chevron"></i></a>
         <div class="butter-editor-outer">
           <div class="butter-editor-inner">
             <h3>Text Editor</h3>
             <fieldset>
               <label>Text</label>
-              <textarea></textarea>
+              <textarea>Day 2 at the Games was not without its upsets and one of the biggest might have been Spain's shock loss to Honduras. Jerry Bengtson's seventh-minute header ensured that the Spaniards, whose senior team are reigning world and European champions, will go home early following an opening defeat by Group D leaders Japan.
+              </textarea>
             </fieldset>
             <fieldset>
-              <label>Font size</label>
-              <input type="text" value="This is my input">
+              <label>Style</label>
+              <div class="ui-button-group ui-light">
+                <a>This is a dropdown</a>
+                <select name="stledas" id="myselect1">
+                  <option val="jeldo">dasd</option>
+                  <option val="dasda">d32fff</option>
+                </select>
+              </div>
             </fieldset>
-            <fieldset>
-              <label>Text</label>
-              <textarea></textarea>
-            </fieldset>
-            <fieldset>
-              <label>Font size</label>
-              <input type="text" value="This is my input">
-            </fieldset>
-            <fieldset>
-              <label>Text</label>
-              <textarea></textarea>
-            </fieldset>
-            <fieldset>
-              <label>Font size</label>
-              <input type="text" value="This is my input">
-            </fieldset>
+            
           </div>
         </div>
     </section>
     <section id="tray" class="butter-tray">
-      <div id="controls" class="butter-controls"></div>
+      <div id="controls" class="butter-controls">
+        <a id="edit-media" class="butter-btn-media butter-btn-dark"><i class="icon icon-white icon-pencil"></i> Edit media</a>
+        <div id="butter-controls-inner" class="butter-controls-inner">
+          <span id="butter-range" class="butter-range"></span>
+          <span id="butter-scrubber" class="butter-scrubber">
+            <span class="butter-scrubber-head"></span>
+          </span>
+        </div>
+      </div>
     </section>
   </div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
   <script src="js/script.js"></script>
   <script>
-    document.getElementById( "add-popcorn" ).addEventListener( "click", function(){
-      document.getElementById( "wrapper" ).classList.remove( "butter-editor-collapsed" );
-    });
+
     document.getElementById( "butter-editor-close-btn" ).addEventListener( "click", function(){
-      document.getElementById( "wrapper" ).classList.toggle( "butter-editor-collapsed" );
+      document.body.classList.toggle( "butter-editor-collapsed" );
     });
-    document.getElementById( "tray" ).addEventListener( "click", function(){
-      document.getElementById( "wrapper" ).classList.toggle( "butter-tray-collapsed" );
+
+    document.getElementById( "edit-media" ).addEventListener( "click", function(){
+      document.body.classList.toggle( "butter-tray-collapsed" );
     });
+
+    $( ".butter-scrubber" ).draggable({ axis: "x", containment: "#butter-controls-inner" });
+    $( ".butter-range" ).resizable({ handles: "e, w", containment: "#butter-controls-inner" });
+
   </script>
 </body>
 </html>

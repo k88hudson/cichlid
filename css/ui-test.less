@@ -22,8 +22,8 @@
 @headerHeight: 1;
 @editorWidth: 4;
 @trayHeight: 3;
-@collapsed: 0.7;
-@controlsHeight: 0.7; // same a collapsed
+@collapsed: 0.8;
+@controlsHeight: 0.8; // same a collapsed
 
 // Logo
 @logoWidth: 52px;
@@ -59,11 +59,12 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
+  overflow: hidden;
 }
 
 section {
   .box-sizing( border-box );
-  .transition( all .5s ease );
+  .transition( all .3s ease );
 }
 
 /*********************************************************
@@ -81,14 +82,16 @@ section {
 }
 
 .btn-shadow( @color ) {
-  box-shadow: 0 -1px 0 lighten( @color, 3% ),
-  0 1px 0 darken( @color, 14% ),
+  box-shadow: inset 0 1px 0 lighten( @color, 10% ),
+  0 -1px 0 darken( @color, 20% ),
+  0 1px 0 darken( @color, 10% ),
   1px 0 0 darken( @color, 5% ),
   -1px 0 0 darken( @color, 5% );
 }
 
 .btn-shadow( @color, "hover" ) {
-  box-shadow: 0 -1px 0 lighten( @color, 10% ),
+  box-shadow: inset 0 1px 0 lighten( @color, 15% ),
+    0 -1px 0 darken( @color, 20% ),
     0 1px 0 darken( @color, 14% ),
     1px 0 0 darken( @color, 5% ),
     -1px 0 0 darken( @color, 5% ),
@@ -113,10 +116,10 @@ section {
 
 .butter-btn-dark {
   color: #EEE;
-  border-top: 1px solid #000;
+  //border-top: 1px solid #000;
   text-shadow: @textShadow;
   .btn-shadow( @baseDark );
-  .gradient( "vertical", @baseDark, darken( @baseDark, 5% ) );
+  .gradient( "vertical", lighten( @baseDark, 3% ), darken( @baseDark, 2% ) );
   &:hover {
     color: #FFF;
     .btn-shadow( @baseDark, "hover" );
@@ -133,6 +136,14 @@ section {
     .btn-shadow( @rouge, "hover" );
   }
 }
+
+.btn-light,
+.ui-light a {
+  .button2( #EEE, 10%, #333, 3px, 10% );
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
 
 
 /*********************************************************
@@ -185,35 +196,36 @@ header {
   position: absolute;
   top: 0;
   right: 0;
-  .grid( bottom, @trayHeight );
+  bottom: 0;
   .grid( width, @editorWidth );
-  background: @baseLight;
-  box-shadow: -1px 1px 2px fade( #000, 70% ),
-    inset 0 5px 8px -3px fade( #000, 70% ),
-    inset 0 -5px 8px -3px fade( #000, 70% );
+  .gradient( "vertical", @baseLight, darken( @baseLight, 5% ) );
+  box-shadow:  -7px 5px 5px -5px fade( #000, 60% ),
+    inset 0 7px 2px -3px fade( #000, 40% );
   overflow-x: hidden;
+  overflow-y: scroll;
+  z-index: 100;
 }
 .butter-editor-close-btn {
-  position: absolute;
-  top: 3px;
-  left: 0;
-  .button();
    > i {
     background-position: -456px -72px;
   }
-  &:hover {
-    
-  }
 }
 .butter-editor-outer {
-  padding: 20px;
-  padding-top: 40px;
+  .box-sizing( border-box );
+  .grid( width, @editorWidth );
+  padding-right: 20px; /* scrollbar */
 }
 
 .butter-editor-inner {
-  opacity: 1;
-  h3 {
+  padding: 20px;
+
+  h3{
     margin-top: 0;
+    text-transform: uppercase;
+    font-size: .9em;
+    letter-spacing: 0.08em;
+    color: #444;
+    text-shadow: 0 1px 0 #FFF;
   }
 
   label {
@@ -244,6 +256,11 @@ header {
     }
   }
 
+  textarea {
+    min-height: 100px;
+    line-height: 1.25;
+  }
+
 }
 
 /*********************************************************
@@ -272,9 +289,16 @@ header {
 }
 
 .butter-video-container {
-  border: 10px;
-  video {
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 0 1px darken( @baseDark, 15% ),
+    0 1px 0 0 lighten( @baseDark, 3% );
+  .box-sizing( border-box );
+  background: darken( @baseDark, 10% );
+  video,
+  iframe {
     width: 100%;
+    height: 100%;
   }
 }
 
@@ -287,16 +311,92 @@ header {
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
+  .grid( right, @editorWidth );
   .grid( height, @trayHeight );
   background: darken( @baseDark, 5% );
-  overflow: hidden;
+  //.gradient( "vertical", @baseLight, darken( @baseLight, 10% ) );
 }
+
 .butter-controls {
+  position: relative;
   border: 1px solid #111;
+  box-shadow: inset 0 1px 0 lighten( @baseDark, 5% ),
+    0 2px 5px 2px rgba( 0, 0, 0, 0.5 );
   border-width: 1px 0 1px 0;
   .gradient( "vertical", @baseDark, darken( @baseDark, 2% ) );
   .grid( height, @controlsHeight );
+  .box-sizing( border-box );
+  padding: 5px;
+}
+
+.butter-btn-media {
+  float: left;
+  margin-right: 5px;
+}
+
+.butter-controls-inner {
+  position: relative;
+  display: block;
+  margin-left: 110px;
+  background: rgba( 0, 0, 0, .5 );
+  height: 100%;
+  border-radius: 5px;
+  border-bottom: 1px solid lighten( @baseDark, 5% );
+}
+
+.butter-scrubber {
+  position: absolute;
+  cursor: move;
+  left: 30px;
+  top: -5px;
+  padding-bottom: 2px;
+  width: 1px;
+  .grid( height, @controlsHeight );
+  background: @rouge;
+  z-index: 100;
+}
+
+.butter-scrubber-head {
+  @_scrubberHeadSize: 7px;
+  position: absolute;
+  top: -@_scrubberHeadSize;
+  left: -@_scrubberHeadSize / 2;
+  width: @_scrubberHeadSize;
+  height: @_scrubberHeadSize;
+  border-radius: @_scrubberHeadSize;
+  background: @rouge;
+}
+
+.butter-range {
+  position: absolute;
+  padding-bottom: 2px;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  .gradient( "vertical", fade( #FFF, 2% ), fade( #FFF, 5% ));
+  //border: 1px solid fade( @rouge, 50% );
+  border-radius: 5px;
+
+  @_handles: 10px;
+
+  .ui-resizable-handle {
+    background: @baseLight;
+    display: block;
+    position: absolute;
+    top: 50%;
+    height: @_handles;
+    width: @_handles / 2;
+    margin-top: -@_handles / 2;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  .ui-resizable-w {
+    left: -@_handles / 4;
+  }
+  .ui-resizable-e {
+    right: -@_handles / 4;
+  }
+
 }
 
 
@@ -305,14 +405,14 @@ header {
 */
 
 .butter-editor-collapsed {
-  .butter-editor-inner {
-    opacity: 0;
-  }
   .butter-editor {
-    .grid( width, @collapsed );
+    width: 0;
+  }
+  .butter-tray {
+    right: 0;
   }
   .butter-stage {
-    .grid( right, @collapsed );
+    right: 0;
   }
   .butter-editor-close-btn > i {
     background-position: -432px -72px; // left
@@ -320,9 +420,6 @@ header {
 }
 
 .butter-tray-collapsed {
-  .butter-editor {
-    .grid( bottom, @collapsed );
-  }
   .butter-tray{
     .grid( height, @collapsed );
   }

@@ -7,7 +7,7 @@
   <title>Tests for cichlid</title>
 
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/test.css">
+  <link rel="stylesheet" href="css/ui-test-light.css">
 
   <!--
   This is for client-side compiled version of LESS.
@@ -28,59 +28,164 @@
 
 </head>
 <body>
+  <header>
+    <div id="logo"></div>
+    <div id="butter-header-buttons">
+      <!--
+      <a id="add-popcorn" class="butter-btn-dark"><i class="icon icon-white icon-comment"></i> Add Popcorn</a>
+    
 
-  <div class="wrapper colors">
-    <div class="retro">
-    </div>
-  </div>
-
-  <div class="wrapper bg-light">
-    <h3>Backgrounds</h3>
-    <div class="test noiseBackgroundLight"></div>
-    <div class="test noiseBackgroundMid"></div>
-    <div class="test noiseBackgroundDark"></div>
-    <div class="test noiseBackground2"></div>
-    <div class="test gradientVertical"></div>
-    <div class="test gradientWash"></div>
-    <div class="test gradiatedBorder"></div>
-    <div class="test glowMid"></div>
-    <div class="test glowLight"></div>
-  </div>
-
-  <div class="wrapper bg-dark">
-    <div class="test gradiatedBorder"></div>
-    <div class="test glowDark"></div>
-  </div>
-
-  <div class="wrapper bg-dark">
-    <div class="drop-down">
-      <div class="drop-down-header">
-        <input type="text" class="ui-inset-input" value="Hello world">
-        <span class="ui-count">12</span>
-      </div>
-      <div class="drop-down-body">
-        <ul>
-          <li><span>Manhattan Square Garden</span><span class="ui-count ui-float-right">12</span></li>
-          <li></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="wrapper bg bg-1">
-    <h3>Boxes</h3>
-    <div class="ui-panel">
-      <div class="grid-row">
-        <div class="grid-3">Hello</div>
-        <div class="grid-9">
-          <div><strong>Dropbox</strong></div>
-          <div>3 files were updated</div>
+      <a class="butter-btn-dark">Save</a>    
+      <a class="butter-btn-dark"><i class="icon icon-white icon-cog"></i> Settings</a>
+      <a class="butter-btn-dark"><i class="icon icon-white icon-share"></i> Share</a>
+    -->
+      <a id="butter-editor-close-btn" class="butter-btn-dark butter-editor-close-btn"><i class="icon icon-chevron"></i>Editor</a>
+    </div> 
+  </header>
+  <div id="wrapper" class="butter-wrapper">
+    <section id="stage" class="butter-stage">
+      <div class="butter-embed-container">
+  
+       <div id="media-source" class="butter-media-source">
+          <a class="butter-btn-dark"><i class="icon icon icon-pencil"></i> Edit media</a>
+        </div>
+    
+        <div class="butter-video-container">
+          <video id="video" preload data-butter="media" controls>
+            <source src="http://ia700300.us.archive.org/9/items/nozon-test1/Nozon-test_512kb.mp4">
+            <source src="http://ia700300.us.archive.org/9/items/nozon-test1/Nozon-test.ogv">
+          </video>
         </div>
       </div>
-    </div>
+    </section>
+    <section id="editor" class="butter-editor">
+        <div class="butter-editor-outer">
+          <div class="butter-editor-inner">          
+          </div>
+        </div>
+    </section>
+    <section id="tray" class="butter-tray">
+      <div id="controls" class="butter-controls">
+        <a id="edit-media" class="butter-btn-media butter-btn-dark"><i class="icon icon-play"></i>00:00/01:40</a>
+        <div id="butter-controls-inner" class="butter-controls-inner">
+          <ul id="butter-visualization"></ul>
+          <span id="butter-range" class="butter-range">
+          </span>
+           <span id="butter-scrubber" class="butter-scrubber">
+              <span class="butter-scrubber-head"></span>
+            </span>   
+         
+        </div>
+      </div>
+      <div id="butter-tracks-container">
+        <ul id="butter-tracks"></ul>
+      </div>
+    </section>
   </div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+  <script src="js/libs/jquery.localScroll.min.js"></script>
   <script src="js/script.js"></script>
+  <script>
+
+    var butter = {},
+        i,
+        l;
+
+    butter.duration = 80;
+    butter.tracks = [ 1, 2, 3 ];
+    butter.orderedTrackEvents = [
+      {
+        track: 1,
+        start: 3,
+        end: 5
+      },
+      {
+        track: 2,
+        start: 10,
+        end: 15
+      },
+      {
+        track: 2,
+        start: 24,
+        end: 30
+      },
+      {
+        track: 3,
+        start: 24,
+        end: 35
+      },
+      {
+        track: 1,
+        start: 67,
+        end: 75
+      }
+    ];
+
+    function addVisualizationEl( obj) {
+      var dur = butter.duration,
+          el,
+          trackEl,
+          ul = document.getElementById( "butter-visualization" ),
+          tracks = document.getElementById( "butter-tracks" );
+          start = obj.start,
+          end = obj.end,
+          track = obj.track,
+          totalTracks = butter.tracks.length;
+
+      el = document.createElement( "li" );
+      el.style.left = start / dur * 100 + "%";
+      el.style.right = ( dur - end ) / dur * 100 + "%";
+      el.style.top = track / totalTracks * 100 + "%";
+
+      trackEl = el.cloneNode( "true" );
+
+      ul.appendChild( el );
+      tracks.appendChild( trackEl );
+
+    }
+
+    document.getElementById( "butter-editor-close-btn" ).addEventListener( "click", function(){
+      document.body.classList.toggle( "butter-editor-collapsed" );
+    });
+
+    document.getElementById( "edit-media" ).addEventListener( "click", function(){
+      document.body.classList.toggle( "butter-tray-collapsed" );
+    });
+
+    for ( i = 0, l = butter.orderedTrackEvents.length; i < l; i++ ) {
+      addVisualizationEl( butter.orderedTrackEvents[ i ] );
+    }
+
+    function resetView( el ) {
+      var y = $( "#butter-tracks" ).width(),
+            a = $( el ).width(),
+            l = el.style.left.replace( "px", "" ),
+            x = $( "#butter-tracks-container" ).width(),
+            b = $( "#butter-controls-inner" ).width(),
+            newY = x * b / a,
+            newX = ( l / b ) * newY;
+        $( "#butter-tracks" ).width( newY );
+        $("#butter-tracks-container").scrollTo( newX, 0 );
+    }
+
+    $( ".butter-scrubber" ).draggable({ axis: "x", containment: "#butter-controls-inner" });
+    $( ".butter-range" ).draggable(
+      { axis: "x",
+      containment: "#butter-controls-inner",
+      drag: function( event, ui ) {
+        resetView( this );
+      }
+    }).resizable({ 
+      handles: "e, w", 
+      containment: "#butter-controls-inner",
+      resize: function( event, ui ) {
+        resetView( this );
+      }
+    });
+
+
+  </script>
 </body>
 </html>

@@ -1855,6 +1855,7 @@ section {
   border-bottom-color: #959595;
   font-size: 14px;
   padding: 5px 10px;
+  display: block;
 }
 .btn-light:visited,
 .ui-light a:visited,

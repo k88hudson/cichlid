@@ -157,9 +157,28 @@ section, header {
 
 .btn-light,
 .ui-light a {
-  .button2( #EEE, 10%, #333, 3px, 10% );
+  .button2( #EEE, 1%, #333, 3px, 10% );
   font-size: 14px;
   padding: 5px 10px;
+}
+
+.btn-events {
+  position:relative;
+  display: block;
+  width: 100%;
+  .box-sizing( border-box );
+  padding: 14px;
+  margin-bottom: 7px;
+  z-index: 100000;
+  cursor: move;
+  .button2( #EEE, 2%, #333, 3px, 10% );
+  &:hover{
+    .button2( #EEE, 10%, #333, 3px, 30% );
+  
+    left: -1px;
+    box-shadow: 6px 6px 0 -2px darken( @baseLight, 30% );
+    .transition( all .1s ease );
+  }
 }
 
 .icon.icon-only {
@@ -216,8 +235,7 @@ section, header {
   .gradient( "vertical", @baseLight, darken( @baseLight, 5% ) );
   box-shadow: -2px -5px 5px 0 fade( #000, 60% ),
     inset 0 7px 2px -3px fade( #000, 40% );
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: visible;
   z-index: 100;
 }
 

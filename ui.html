@@ -72,14 +72,15 @@
         </header>
        
         <div class="butter-editor-outer">
-          <div class="butter-editor-inner">            
+          <div class="butter-editor-inner">  
             <fieldset>
-              <label>Text</label>
-              <textarea>Day 2 at the Games was not without its upsets and one of the biggest might have been Spain's shock loss to Honduras. Jerry Bengtson's seventh-minute header ensured that the Spaniards, whose senior team are reigning world and European champions, will go home early following an opening defeat by Group D leaders Japan.
-              </textarea>
-            </fieldset>
+                <a class="btn-light btn-events">Text</a>
+                <a class="btn-light btn-events">Link</a>
+                <a class="btn-light btn-events">Twitter</a>
+                <a class="btn-light btn-events">Blah</a>
+                <a class="btn-light btn-events">Stuff</a>
+            </fieldset>          
             <fieldset>
-              <label>Style</label>
               <div class="ui-button-group ui-light">
                 <a>This is a dropdown</a>
                 <select name="stledas" id="myselect1">
@@ -161,20 +162,16 @@
 
     }
 
-    document.getElementById( "butter-editor-close-btn" ).addEventListener( "click", function(){
-      document.body.classList.toggle( "butter-editor-collapsed" );
-    });
-
-    document.getElementById( "edit-media" ).addEventListener( "click", function(){
-      document.body.classList.toggle( "butter-tray-collapsed" );
-    });
-
     for ( i = 0, l = butter.orderedTrackEvents.length; i < l; i++ ) {
       addVisualizationEl( butter.orderedTrackEvents[ i ] );
     }
 
     $( ".butter-scrubber" ).draggable({ axis: "x", containment: "#butter-controls-inner" });
     $( ".butter-range" ).draggable({ axis: "x",  containment: "#butter-controls-inner" }).resizable({ handles: "e, w", containment: "#butter-controls-inner" });
+
+    $( ".btn-events" ).draggable({
+      helper: "clone"
+    });
 
   </script>
 </body>

@@ -20,7 +20,8 @@
 
 // Main Sections
 @headerHeight: 1;
-@editorWidth: 4;
+@editorWidth: 5;
+@editorHeaderHeight: 0.9;
 @trayHeight: 3;
 @collapsed: 0.8;
 @controlsHeight: 0.8; // same a collapsed
@@ -51,6 +52,7 @@
 @baseLight: #EFEFEF;
 @textShadow: 0 -2px 0 #000;
 @rouge: #CB2408;
+@green: #78B88F;
 
 
 /*********************************************************
@@ -63,14 +65,14 @@ html {
 
 .butter-wrapper {
   position: absolute;
-  .grid( top, @headerHeight );
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   overflow: hidden;
 }
 
-section {
+section, header {
   .box-sizing( border-box );
   .transition( all .3s ease );
 }
@@ -116,6 +118,11 @@ section {
     position: relative;
     top: 2px;
     margin-right: 5px;
+
+    &.icon-only {
+      margin-right: 0;
+    }
+
   }
 }
 
@@ -159,11 +166,13 @@ section {
 * Header
 */
 
-header {
-  position: relative;
+.butter-header {
+  position: absolute;
+  left: 0;
   .grid( height, @headerHeight );
+  .grid( right, @editorWidth );
   .gradient( "vertical", @baseDark, darken( @baseDark, 5% ) );
-  z-index: @maxZ;
+  z-index: 100;
   border: 1px solid #111;
   border-width: 1px 0 1px 0;
   box-shadow: 0 1px 0 fade( lighten( @baseDark, 10% ), 25%);
@@ -171,8 +180,8 @@ header {
 
 #logo {
   padding-left: @logoWidth;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 300;
   margin-left: @gridMargin;
   color: @baseLight;
   text-shadow: 0 -1px 1px #000;
@@ -184,9 +193,16 @@ header {
   float: left;
 }
 
-#butter-header-buttons {
+#butter-header-buttons-left {
   padding-top: @buttonTopSpacing;
-  margin-right: @gridMargin;
+  margin-left: @gridMargin;
+  float: left;
+}
+
+#butter-header-buttons-right {
+  padding-top: @buttonTopSpacing;
+  margin-right: -1px;
+  margin-top: -7px;
   float: right;
 }
 
@@ -208,12 +224,60 @@ header {
   bottom: 0;
   .grid( width, @editorWidth );
   .gradient( "vertical", @baseLight, darken( @baseLight, 5% ) );
-  box-shadow:  -7px 5px 5px -5px fade( #000, 60% ),
+  box-shadow: -2px -5px 5px 0 fade( #000, 60% ),
     inset 0 7px 2px -3px fade( #000, 40% );
   overflow-x: hidden;
   overflow-y: scroll;
   z-index: 100;
 }
+
+.butter-editor-header {
+  position: relative;
+  .grid( height, @editorHeaderHeight );
+  .gradient( "vertical", @baseDark, darken( @baseDark, 5% ) );
+  box-shadow: 0 1px 0 fade( lighten( @baseDark, 10% ), 25%);
+  border-bottom: 5px solid @green;
+
+  > ul {
+    position: absolute;
+    bottom: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    .clearfix();
+
+    > li {
+      float: right;
+
+      &.butter-editor-title {
+        float: left;
+      }
+
+      > a.butter-btn-dark {
+        background: none;
+        font-size: 15px;
+        margin-right: 0;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        .grid( padding, @editorHeaderHeight / 2 );
+
+        > .icon {
+          margin-right: 0;
+        }
+
+        &.butter-active {
+          background: @green;
+        }
+
+      }
+
+    }
+
+  }
+}
+
 .butter-editor-close-btn {
    > i {
     background-position: -456px -72px;
@@ -278,9 +342,9 @@ header {
 
 .butter-stage {
   position: absolute;
-  top: 0;
   left: 0;
   right: @editorWidth;
+  .grid( top, @headerHeight );
   .grid( right, @editorWidth );
   .grid( bottom, @trayHeight );
   .gradient( "wash", darken( @baseDark, 5% ), darken( @baseDark, 10% ), lighten( @baseDark, 5% ), @noiseLight );
@@ -440,6 +504,9 @@ header {
 */
 
 .butter-editor-collapsed {
+  .butter-header {
+    right: 0;
+  }
   .butter-editor {
     width: 0;
   }

@@ -28,24 +28,25 @@
 
 </head>
 <body>
-  <header>
-    <div id="logo">Popcorn</div>
-    <div id="butter-header-buttons">
-      <!--
-      <a id="add-popcorn" class="butter-btn-dark"><i class="icon icon-white icon-comment"></i> Add Popcorn</a>
-      -->
-      <a class="butter-btn-dark">Save</a>    
-      <a class="butter-btn-dark"><i class="icon icon-white icon-cog"></i> Settings</a>
-      <a class="butter-btn-dark"><i class="icon icon-white icon-share"></i> Share</a>
-      <a id="butter-editor-close-btn" class="butter-btn-dark butter-editor-close-btn"><i class="icon icon-white icon-chevron"></i>Editor</a>
-    </div> 
-  </header>
   <div id="wrapper" class="butter-wrapper">
+    <header class="butter-header">
+      <div id="logo">Popcorn</div>
+      <div id="butter-header-buttons-left">
+  
+        <a class="butter-btn-dark"><i class="icon icon-white icon-user"></i> Logged in as Kate Hudson</a>
+    
+        <a class="butter-btn-dark">Save</a>
+      </div> 
+      <div id="butter-header-buttons-right">
+  
+        <a id="butter-editor-close-btn" class="butter-btn-dark butter-editor-close-btn"><i class="icon icon-only icon-white icon-chevron"></i></a>
+      </div> 
+    </header>
     <section id="stage" class="butter-stage">
       <div class="butter-embed-container">
   
        <div id="media-source" class="butter-media-source">
-          <a class="butter-btn-dark"><i class="icon icon-white icon-pencil"></i> Edit media</a>
+          <a class="butter-btn-dark"><i class="icon icon-white icon-plus"></i> Add Video Source</a>
         </div>
     
         <div class="butter-video-container">
@@ -58,8 +59,15 @@
     </section>
     <section id="editor" class="butter-editor">
         <div class="butter-editor-outer">
-          <div class="butter-editor-inner">
-            <h3>Text Editor</h3>
+           <header class="butter-editor-header">
+              <ul>
+                <li class="butter-editor-title"><a class="butter-btn-dark">Add Event</a></li>
+                <li><a class="butter-btn-dark"><i class="icon icon-white icon-cog"></i></a></li>
+                <li><a class="butter-btn-dark"><i class="icon icon-white icon-share"></i></a></li>
+                <li><a class="butter-btn-dark"><i class="icon icon-white icon-pencil"></i></a></li>
+                <li><a class="butter-btn-dark butter-active"><i class="icon icon-white icon-plus"></i></a></li>
+            </header>
+          <div class="butter-editor-inner">            
             <fieldset>
               <label>Text</label>
               <textarea>Day 2 at the Games was not without its upsets and one of the biggest might have been Spain's shock loss to Honduras. Jerry Bengtson's seventh-minute header ensured that the Spaniards, whose senior team are reigning world and European champions, will go home early following an opening defeat by Group D leaders Japan.

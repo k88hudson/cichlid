@@ -178,21 +178,6 @@ section, header {
   box-shadow: 0 1px 0 fade( lighten( @baseDark, 10% ), 25%);
 }
 
-#logo {
-  padding-left: @logoWidth;
-  font-size: 18px;
-  font-weight: 300;
-  margin-left: @gridMargin;
-  color: @baseLight;
-  text-shadow: 0 -1px 1px #000;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  .grid( height, @headerHeight );
-  .grid( line-height, @headerHeight );
-  background: url( ../img/logo_styled.png ) no-repeat;
-  float: left;
-}
-
 #butter-header-buttons-left {
   padding-top: @buttonTopSpacing;
   margin-left: @gridMargin;
@@ -340,11 +325,25 @@ section, header {
 * Stage
 */
 
+#logo {
+  padding-left: @logoWidth;
+  font-size: 18px;
+  font-weight: 300;
+  margin-left: @gridMargin;
+  color: @baseLight;
+  text-shadow: 0 -1px 1px #000;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  .grid( height, @headerHeight );
+  .grid( line-height, @headerHeight );
+  background: url( ../img/logo_styled.png ) no-repeat;
+}
+
 .butter-stage {
   position: absolute;
   left: 0;
   right: @editorWidth;
-  .grid( top, @headerHeight );
+  top: 0;
   .grid( right, @editorWidth );
   .grid( bottom, @trayHeight );
   .gradient( "wash", darken( @baseDark, 5% ), darken( @baseDark, 10% ), lighten( @baseDark, 5% ), @noiseLight );
@@ -414,7 +413,6 @@ section, header {
 .butter-controls-inner {
   position: relative;
   display: block;
-  margin-left: 110px;
   background: rgba( 0, 0, 0, .5 );
   height: 100%;
   border-radius: 5px;

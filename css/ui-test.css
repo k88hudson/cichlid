@@ -1890,20 +1890,6 @@ header {
   border-width: 1px 0 1px 0;
   box-shadow: 0 1px 0 rgba(57, 75, 81, 0.25);
 }
-#logo {
-  padding-left: 52px;
-  font-size: 18px;
-  font-weight: 300;
-  margin-left: 20px;
-  color: #efefef;
-  text-shadow: 0 -1px 1px #000000;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  ignore: ''; height: 61.666666666666664px;;
-  ignore: ''; line-height: 61.666666666666664px;;
-  background: url(../img/logo_styled.png) no-repeat;
-  float: left;
-}
 #butter-header-buttons-left {
   padding-top: 15px;
   margin-left: 20px;
@@ -2040,11 +2026,24 @@ header {
 /*********************************************************
 * Stage
 */
+#logo {
+  padding-left: 52px;
+  font-size: 18px;
+  font-weight: 300;
+  margin-left: 20px;
+  color: #efefef;
+  text-shadow: 0 -1px 1px #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  ignore: ''; height: 61.666666666666664px;;
+  ignore: ''; line-height: 61.666666666666664px;;
+  background: url(../img/logo_styled.png) no-repeat;
+}
 .butter-stage {
   position: absolute;
   left: 0;
   right: 5;
-  ignore: ''; top: 61.666666666666664px;;
+  top: 0;
   ignore: ''; right: 388.3333333333333px;;
   ignore: ''; bottom: 225px;;
   background: url(data:image/png;base64,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 ), -moz-linear-gradient(top right, #2f3d42 0%, rgba(47, 61, 66, 0) 100%), -moz-linear-gradient(top, #192124 0%, #0f1315 100%);
@@ -2114,7 +2113,6 @@ header {
 .butter-controls-inner {
   position: relative;
   display: block;
-  margin-left: 110px;
   background: rgba(0, 0, 0, 0.5);
   height: 100%;
   border-radius: 5px;

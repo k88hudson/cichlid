@@ -66,19 +66,20 @@
     </section>
     <section id="tray" class="butter-tray">
       <div id="controls" class="butter-controls">
-        <a id="edit-media" class="butter-btn-media butter-btn-dark"><i class="icon icon-play"></i>00:00/01:40</a>
         <div id="butter-controls-inner" class="butter-controls-inner">
           <ul id="butter-visualization"></ul>
-          <span id="butter-range" class="butter-range">
+          <span id="butter-range" class="butter-range">  
           </span>
-           <span id="butter-scrubber" class="butter-scrubber">
-              <span class="butter-scrubber-head"></span>
-            </span>   
-         
+          <span id="butter-scrubber" class="butter-scrubber">
+            <span class="butter-scrubber-head"></span>
+          </span> 
         </div>
       </div>
       <div id="butter-tracks-container">
-        <ul id="butter-tracks"></ul>
+        <div>
+          <ul id="butter-tracks">
+            <span id="butter-scrubber-large" class="butter-scrubber-large"></span>
+          </ul>
       </div>
     </section>
   </div>
@@ -128,7 +129,7 @@
           el,
           trackEl,
           ul = document.getElementById( "butter-visualization" ),
-          tracks = document.getElementById( "butter-tracks" );
+          tracks = document.getElementById( "butter-tracks" ),
           start = obj.start,
           end = obj.end,
           track = obj.track,
@@ -150,12 +151,31 @@
       document.body.classList.toggle( "butter-editor-collapsed" );
     });
 
+    /*
     document.getElementById( "edit-media" ).addEventListener( "click", function(){
       document.body.classList.toggle( "butter-tray-collapsed" );
     });
 
+    */
+
     for ( i = 0, l = butter.orderedTrackEvents.length; i < l; i++ ) {
       addVisualizationEl( butter.orderedTrackEvents[ i ] );
+    }
+
+    function viewerToTray( val ) {
+      var tray = $( "#butter-tracks" ).width(),
+          viewer = $( "#butter-controls-inner" ).width(),
+          ratio = tray/viewer;
+
+      return val * ratio;
+    }
+
+    function updateScrubbers() {
+      var small = document.getElementById( "butter-scrubber" ),
+          large = document.getElementById( "butter-scrubber-large" );
+
+      large.style.left = viewerToTray( small.style.left );
+
     }
 
     function resetView( el ) {
@@ -166,11 +186,32 @@
             b = $( "#butter-controls-inner" ).width(),
             newY = x * b / a,
             newX = ( l / b ) * newY;
+
         $( "#butter-tracks" ).width( newY );
-        $("#butter-tracks-container").scrollTo( newX, 0 );
+        $( "#butter-tracks-container" ).scrollTo( newX, 0 );
+        updateScrubbers();
+
     }
 
-    $( ".butter-scrubber" ).draggable({ axis: "x", containment: "#butter-controls-inner" });
+    $( ".butter-scrubber" ).draggable({ 
+      axis: "x",
+      containment: "#butter-controls-inner",
+      drag: function( event, ui ) {
+        var newScrubberPos = viewerToTray( ui.position.left );
+        document.getElementById( "butter-scrubber-large" ).style.left = newScrubberPos + "px";
+
+      },
+      stop: function( event, ui ) {
+        var total = $( "#butter-controls-inner" ).width(),
+            endPos = ui.position.left,
+            leftInPercent =  endPos/ total * 100 + "%";
+
+        this.style.left = leftInPercent;
+        document.getElementById( "butter-scrubber-large" ).style.left = leftInPercent;
+
+      }
+    });
+
     $( ".butter-range" ).draggable(
       { axis: "x",
       containment: "#butter-controls-inner",
@@ -183,6 +224,11 @@
       resize: function( event, ui ) {
         resetView( this );
       }
+    });
+
+    $( "#butter-scrubber-large" ).draggable({ 
+      axis: "x",
+      containment: "#tray"
     });
 
 

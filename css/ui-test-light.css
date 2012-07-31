@@ -2056,10 +2056,8 @@ header {
 .butter-controls-inner {
   position: relative;
   display: block;
-  margin-left: 115px;
   height: 30px;
   display: block;
-  background: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   border-bottom: 1px solid #2f3d42;
 }
@@ -2071,6 +2069,17 @@ header {
   padding-bottom: 2px;
   width: 1px;
   ignore: ''; height: 45.333333333333336px;;
+  background: #cb2408;
+  z-index: 100;
+}
+.butter-scrubber-large {
+  position: absolute;
+  cursor: move;
+  top: 0;
+  left: 30px;
+  padding-bottom: 40px;
+  width: 2px;
+  height: 100px;
   background: #cb2408;
   z-index: 100;
 }
@@ -2123,9 +2132,10 @@ header {
 #butter-visualization li {
   position: absolute;
   height: 3px;
-  background: #efefef;
+  background: #cb2408;
 }
 #butter-tracks-container {
+  position: relative;
   display: block;
   width: 100%;
   height: 150px;
@@ -2142,11 +2152,11 @@ header {
 #butter-tracks li {
   position: absolute;
   display: block;
-  background: -moz-linear-gradient(top, #efefef 0%, #dfdfdf 100%);
-  background: -webkit-linear-gradient(top, #efefef 0%, #dfdfdf 100%);
-  background: -o-linear-gradient(top, #efefef 0%, #dfdfdf 100%);
-  background: -ms-linear-gradient(top, #efefef 0%, #dfdfdf 100%);
-  background: linear-gradient(top, #efefef 0%, #dfdfdf 100%);
+  background: -moz-linear-gradient(top, #cb2408 0%, #b22007 100%);
+  background: -webkit-linear-gradient(top, #cb2408 0%, #b22007 100%);
+  background: -o-linear-gradient(top, #cb2408 0%, #b22007 100%);
+  background: -ms-linear-gradient(top, #cb2408 0%, #b22007 100%);
+  background: linear-gradient(top, #cb2408 0%, #b22007 100%);
   border: 1px solid rgba(0, 0, 0, 0.3);
   box-shadow: inset 0 1px 0 #ffffff, 0 1px 1px rgba(0, 0, 0, 0.8);
   border-radius: 5px;

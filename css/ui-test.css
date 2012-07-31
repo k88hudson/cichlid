@@ -2161,6 +2161,12 @@ header {
   width: 100%;
   height: 100%;
 }
+.butter-video-container.hover-state {
+  box-shadow: inset 0 0 0 1px #040606, 0 1px 0 0 #2a373c, 0 1px 10px -1px #78b88f;
+}
+.butter-video-container.drag-over-state {
+  box-shadow: inset 0 0 0 1px #040606, 0 1px 0 0 #2a373c, 0 1px 10px 3px #78b88f;
+}
 /*********************************************************
 * Tray
 */

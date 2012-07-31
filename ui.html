@@ -170,7 +170,17 @@
     $( ".butter-range" ).draggable({ axis: "x",  containment: "#butter-controls-inner" }).resizable({ handles: "e, w", containment: "#butter-controls-inner" });
 
     $( ".btn-events" ).draggable({
-      helper: "clone"
+      helper: "clone",
+      drag: function( event, ui ) {
+        $( ".butter-video-container ").addClass("hover-state" );
+      },
+      stop: function( event, ui ){
+        $( ".butter-video-container ").removeClass("hover-state" );
+      }
+    });
+
+    $(".butter-video-container").droppable({
+      hoverClass: "drag-over-state"
     });
 
   </script>

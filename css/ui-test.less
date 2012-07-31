@@ -26,6 +26,8 @@
 @collapsed: 0.8;
 @controlsHeight: 0.8; // same a collapsed
 
+@butterVisualsHeight: 20px;
+
 // Logo
 @logoWidth: 52px;
 
@@ -160,6 +162,9 @@ section, header {
   padding: 5px 10px;
 }
 
+.icon.icon-only {
+  margin-right: 0;
+}
 
 
 /*********************************************************
@@ -247,10 +252,6 @@ section, header {
         box-shadow: none;
         border-radius: 0;
         .grid( padding, @editorHeaderHeight / 2 );
-
-        > .icon {
-          margin-right: 0;
-        }
 
         &.butter-active {
           background: @green;
@@ -388,6 +389,10 @@ section, header {
   //.gradient( "vertical", @baseLight, darken( @baseLight, 10% ) );
 }
 
+.butter-visuals {
+  height: @butterVisualsHeight;
+}
+
 .butter-controls {
   position: relative;
   border: 1px solid #111;
@@ -423,10 +428,10 @@ section, header {
   position: absolute;
   cursor: move;
   left: 30px;
-  top: -5px;
-  padding-bottom: 2px;
+  top: -2px;
+  padding-bottom: 5px;
   width: 1px;
-  .grid( height, @controlsHeight );
+  height: @butterVisualsHeight;
   background: @rouge;
   z-index: 100;
 }

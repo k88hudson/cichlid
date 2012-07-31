@@ -1872,6 +1872,9 @@ header {
   color: #6f6f6f;
   background: #eeeeee;
 }
+.icon.icon-only {
+  margin-right: 0;
+}
 /*********************************************************
 * Header
 */
@@ -1963,9 +1966,6 @@ header {
   box-shadow: none;
   border-radius: 0;
   ignore: ''; padding: 16.75px;;
-}
-.butter-editor-header > ul > li > a.butter-btn-dark > .icon {
-  margin-right: 0;
 }
 .butter-editor-header > ul > li > a.butter-btn-dark.butter-active {
   background: #78b88f;
@@ -2089,6 +2089,9 @@ header {
   ignore: ''; height: 225px;;
   background: #192124;
 }
+.butter-visuals {
+  height: 20px;
+}
 .butter-controls {
   position: relative;
   border: 1px solid #111;
@@ -2122,10 +2125,10 @@ header {
   position: absolute;
   cursor: move;
   left: 30px;
-  top: -5px;
-  padding-bottom: 2px;
+  top: -2px;
+  padding-bottom: 5px;
   width: 1px;
-  ignore: ''; height: 45.333333333333336px;;
+  height: 20px;
   background: #cb2408;
   z-index: 100;
 }

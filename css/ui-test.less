@@ -12,13 +12,7 @@
 @gridMargin: 12px;
 @gridDivisions: 16;
 
-
 @gridUnit: ( @gridTotal - @gridMargin * ( @gridDivisions - 1 ) ) / @gridDivisions;
-
-.grid( @property, @units ) {
-  @_value: @gridUnit * @units + @gridMargin * ( @units - 1 );
-  ignore: ~`"''; @{property}: @{_value};"`;
-}
 
 // Have to do this manually :(
 @grid-1: @gridUnit;
@@ -43,6 +37,7 @@
 @editorWidth: @grid-6;
 @editorHeaderHeight: @grid-1;
 @trayHeight: @grid-4;
+@traySidebarWidth: @grid-2  ;
 @collapsed: @grid-1;
 @controlsHeight: @grid-1; // same a collapsed
 
@@ -63,14 +58,11 @@
   height: @width * .56125;
 }
 
-//Controls
-
-
 // Utility
 @maxZ: 10000;
 
 // Colors
-@baseDark: #242F33;
+@baseDark: #031928;
 @baseLight: #EFEFEF;
 @textShadow: 0 -2px 0 #000;
 @rouge: #CB2408;
@@ -94,7 +86,8 @@ html {
   overflow: hidden;
 }
 
-section, header {
+section,
+header {
   .box-sizing( border-box );
   .transition( all .3s ease );
 }
@@ -215,7 +208,7 @@ section, header {
   left: 0;
   height: @headerHeight;
   right: @editorWidth;
-  .gradient( "vertical", @baseDark, darken( @baseDark, 5% ) );
+  .gradient( "vertical", @baseDark, darken( @baseDark, 3% ) );
   z-index: 100;
   border: 1px solid #111;
   border-width: 1px 0 1px 0;
@@ -424,133 +417,7 @@ section, header {
   }
 
 }
-
-
-/*********************************************************
-* Tray
-*/
-
 /*
-.butter-tray {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: @editorWidth;
-  bottom: @trayHeight;
-  background: darken( @baseDark, 5% );
-  //.gradient( "vertical", @baseLight, darken( @baseLight, 10% ) );
-}
-
-.butter-visuals {
-  height: @butterVisualsHeight;
-}
-
-.butter-controls {
-  position: relative;
-  border: 1px solid #111;
-  box-shadow: inset 0 1px 0 lighten( @baseDark, 5% ),
-    0 2px 5px 2px rgba( 0, 0, 0, 0.5 );
-  border-width: 1px 0 1px 0;
-  .gradient( "vertical", @baseDark, darken( @baseDark, 2% ) );
-  height: @controlsHeight;
-  .box-sizing( border-box );
-  padding: 5px;
-
-  &:hover .ui-resizable-handle {
-    //background: @baseLight;
-  }
-
-}
-
-.butter-btn-media {
-  float: left;
-  margin-right: 5px;
-}
-
-.butter-controls-inner {
-  position: relative;
-  display: block;
-  background: rgba( 0, 0, 0, .5 );
-  height: 100%;
-  border-radius: 5px;
-  border-bottom: 1px solid lighten( @baseDark, 5% );
-}
-
-.butter-scrubber {
-  position: absolute;
-  cursor: move;
-  left: 30px;
-  top: -2px;
-  padding-bottom: 5px;
-  width: 1px;
-  height: @butterVisualsHeight;
-  background: @rouge;
-  z-index: 100;
-}
-
-.butter-scrubber-head {
-  @_scrubberHeadSize: 7px;
-  position: absolute;
-  top: -@_scrubberHeadSize;
-  left: -@_scrubberHeadSize / 2;
-  width: @_scrubberHeadSize;
-  height: @_scrubberHeadSize;
-  border-radius: @_scrubberHeadSize;
-  background: @rouge;
-}
-
-.butter-range {
-  position: absolute;
-  padding-bottom: 2px;
-  top: 0;
-  bottom: 1px;
-  width: 100px;
-  .gradient( "vertical", fade( #FFF, 4% ), fade( #FFF, 7% ));
-  border: 1px solid fade( @baseLight, 50% );
-  //border-width: 0 1px;
-  border-radius: 2px;
-
-  .ui-resizable-handle {
-    @_handlesHeight: 14px;
-    @_handlesWidth: 4px;
-
-    display: block;
-    position: absolute;
-    top: 50%;
-    height: @_handlesHeight;
-    width: @_handlesWidth;
-    margin-top: -@_handlesHeight / 2;
-    cursor: pointer;
-    
-    &.ui-resizable-w {
-      left: -@_handlesWidth / 2;
-    }
-
-    &.ui-resizable-e {
-      right: -@_handlesWidth / 2;
-    }
-
-  }
-
-} // range
-
-#butter-visualization {
-  position: absolute;
-  top: 0px;
-  bottom: 5px;
-  left: 0;
-  right: 0;
-  margin: 5px;
-  list-style: none;
-
-  li {
-    position: absolute;
-    height: 3px;
-    background: @baseLight;
-  }
-
-}
-*/
 
 /*********************************************************
 * Tray
@@ -571,9 +438,55 @@ section, header {
   margin-right: 5px;
 }
 
+.butter-tray-sidebar {
+  position: relative;
+  z-index: 10000;
+  float: left;
+  width: @traySidebarWidth;
+  .gradient( "vertical", darken( @baseLight, 10% ), darken( @baseLight, 5% ) );
+  height: @trayHeight;
+  box-shadow: 0 1px 0 1px fade( #999, 0% );
+  //  inset 0 7px 2px -3px fade( #000, 40% );
+}
+
+.butter-tray-sidebar-controls{
+  height: @controlsHeight;
+  background: @baseDark;
+  width: 100%;
+}
+
+.butter-tracks-container {
+  position: relative;
+  display: block;
+  height: @trayHeight - @controlsHeight;
+  overflow: hidden;
+}
+
+.butter-tracks {
+  position: relative;
+  @_trackHeight: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 2000px;
+  height: 3 * ( @_trackHeight + 5 );
+
+  li {
+    position: absolute;
+    display: block;
+    .gradient( "vertical", @baseLight, darken( @baseLight, 5% ) );
+    border: 1px solid rgba( 0, 0, 0, .3 );
+    box-shadow: inset 0 1px 0 #FFF,
+      0 1px 1px rgba( 0, 0, 0, .8 );
+    border-radius: 5px;
+    height: @_trackHeight;
+    margin-bottom: 5px;
+  }
+}
+
 .butter-controls {
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
   right: 0;
   background: @baseDark;
@@ -597,22 +510,11 @@ section, header {
   overflow-x: hidden;
 }
 
-.butter-scrubber {
-  position: absolute;
-  cursor: move;
-  left: 30px;
-  top: -5px;
-  padding-bottom: 2px;
-  width: 1px;
-  height: @controlsHeight;
-  background: @rouge;
-}
-
 .butter-scrubber-large {
   position: absolute;
   cursor: move;
   top: 21px;
-  left: 30px;
+  left: 200px;
   padding-bottom: 40px;
   width: 1px;
   height: 100px;
@@ -643,7 +545,7 @@ section, header {
 .butter-visuals {
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: @traySidebarWidth;
   right: 0;
   z-index: 100;
   .gradient( "vertical", darken( @baseLight, 10% ), darken( @baseLight, 20% ) );
@@ -652,7 +554,7 @@ section, header {
   box-shadow: inset 0 1px 0 lighten( @baseLight, 5% ),
     0 3px 20px rgba( 0, 0, 0, .3 );
   border-width: 1px 0 1px 0;
-  padding: @butterVisualsHeight / 3 ;
+  padding: @butterVisualsHeight / 5 ;
 
   .butter-visuals-inner {
     position: relative;
@@ -665,6 +567,23 @@ section, header {
   }
 
 }
+
+#butter-visualization {
+  position: absolute;
+  top: 0px;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  margin: 5px;
+  list-style: none;
+
+  li {
+    position: absolute;
+    height: 3px;
+    background: @rouge;
+  }
+}
+
 
 .butter-range {
   position: absolute;
@@ -699,56 +618,16 @@ section, header {
 
 } // range
 
-#butter-visualization {
+.butter-scrubber {
   position: absolute;
-  top: 0px;
-  bottom: 5px;
-  left: 0;
-  right: 0;
-  margin: 5px;
-  list-style: none;
-
-  li {
-    position: absolute;
-    height: 3px;
-    background: @rouge;
-  }
-
+  cursor: move;
+  left: 30px;
+  top: -5px;
+  padding-bottom: 2px;
+  width: 1px;
+  height: @controlsHeight;
+  background: @rouge;
 }
-
-#butter-tracks-container {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 150px;
-  overflow: hidden;
-}
-
-#butter-tracks {
-  position: relative;
-  @_trackHeight: 30px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 2000px;
-  height: 3 * ( @_trackHeight + 5 );
-
-  li {
-    position: absolute;
-    display: block;
-    .gradient( "vertical", @baseLight, darken( @baseLight, 5% ) );
-    border: 1px solid rgba( 0, 0, 0, .3 );
-    box-shadow: inset 0 1px 0 #FFF,
-      0 1px 1px rgba( 0, 0, 0, .8 );
-    border-radius: 5px;
-    height: @_trackHeight;
-    margin-bottom: 5px;
-  }
-}
-
-
-
-
 
 
 

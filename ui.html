@@ -113,8 +113,14 @@
   -->
 
    <section id="tray" class="butter-tray">
-    <div id="butter-tracks-container">
-        <div id="butter-tracks">
+    <div class="butter-tray-sidebar">
+      <div class="butter-tray-sidebar-controls">
+         <a class="butter-btn-dark"><i class="icon icon-white icon-only icon-play"></i></a>
+      </div>
+      <div class="butter-tray-layers"></div>
+    </div>
+    <div id="butter-tracks-container" class="butter-tracks-container">
+        <div id="butter-tracks" class="butter-tracks">
           <div id="controls" class="butter-controls">
             <div class="butter-controls-inner"></div>
           </div>
@@ -142,6 +148,7 @@
 -->
   <script src="js/libs/jquery.js"></script>
   <script src="js/libs/jquery.ui.js"></script>
+  <script src="js/libs/jquery.localScroll.min.js"></script>
   <script src="js/script.js"></script>
   <script>
   document.addEventListener( "DOMContentLoaded", function(){
@@ -150,7 +157,7 @@
         i,
         l;
 
-    butter.duration = 184;
+    butter.duration = 80;
     butter.tracks = [ 1, 2, 3 ];
     butter.orderedTrackEvents = [
       {
@@ -172,56 +179,114 @@
         track: 3,
         start: 24,
         end: 35
+      },
+      {
+        track: 1,
+        start: 67,
+        end: 75
       }
     ];
 
     function addVisualizationEl( obj) {
       var dur = butter.duration,
           el,
+          trackEl,
           ul = document.getElementById( "butter-visualization" ),
+          tracks = document.getElementById( "butter-tracks" ),
           start = obj.start,
-          size = obj.end - obj.start,
+          end = obj.end,
           track = obj.track,
           totalTracks = butter.tracks.length;
 
       el = document.createElement( "li" );
       el.style.left = start / dur * 100 + "%";
-      el.style.width = size / dur * 100 + "%";
+      el.style.right = ( dur - end ) / dur * 100 + "%";
       el.style.top = track / totalTracks * 100 + "%";
 
+      trackEl = el.cloneNode( "true" );
+
       ul.appendChild( el );
+      tracks.appendChild( trackEl );
 
     }
+
+    /*
+    document.getElementById( "butter-editor-close-btn" ).addEventListener( "click", function(){
+      document.body.classList.toggle( "butter-editor-collapsed" );
+    }); */
 
     for ( i = 0, l = butter.orderedTrackEvents.length; i < l; i++ ) {
       addVisualizationEl( butter.orderedTrackEvents[ i ] );
     }
 
-    $( ".butter-scrubber" ).draggable({ axis: "x", containment: "#butter-controls-inner" });
-    $( ".butter-range" ).draggable({ axis: "x",  containment: "#butter-controls-inner" }).resizable({ handles: "e, w", containment: "#butter-controls-inner" });
+    var tracks = document.getElementById( "butter-tracks" ),
+        tracksView = document.getElementById( "butter-tracks-container" ),
+        viz = document.getElementById( "butter-visualization" ),
+        vizWidth = viz.getBoundingClientRect().width,
+        vizView = document.getElementById( "butter-range" ),
+        scrubber = document.getElementById( "butter-scrubber-large" ),
+        scrubberViz = document.getElementById( "butter-scrubber" );
 
-    $( ".btn-events" ).draggable({
-      helper: "clone",
+
+    function trayToViewer( val ) {
+      var tray = $( "#butter-tracks" ).width(),
+          viewer = $( "#butter-controls-inner" ).width(),
+          ratio = viewer / tray;
+
+      return val * ratio;
+    }
+
+    function updateScrubbers() {
+      var small = document.getElementById( "butter-scrubber" ),
+          large = document.getElementById( "butter-scrubber-large" );
+
+      small.style.left = large.style.left;
+
+    }
+
+    function resetView() {
+      var vizViewWidth = vizView.getBoundingClientRect().width,
+          vizViewLeft = vizView.style.left.replace( "px", "" ),
+          tracksViewWidth = tracksView.getBoundingClientRect().width,
+          newTracksWidth = tracksViewWidth * vizWidth / vizViewWidth,
+          newLeft = vizViewLeft / vizWidth  * newTracksWidth;
+
+          tracks.style.width = newTracksWidth + "px",
+          $( tracksView ).scrollTo( newLeft, 0 );
+    }
+
+    $( ".butter-scrubber-large" ).draggable({ 
+      axis: "x",
+      containment: "#butter-controls-inner",
       drag: function( event, ui ) {
-        $( ".butter-video-container ").addClass("hover-state" );
+        var newScrubberPos = trayToViewer( ui.position.left );
+        document.getElementById( "butter-scrubber" ).style.left = newScrubberPos + "px";
+
       },
-      stop: function( event, ui ){
-        $( ".butter-video-container ").removeClass("hover-state" );
+      stop: function( event, ui ) {
+        var total = $( "#butter-controls-inner" ).width(),
+            endPos = ui.position.left,
+            leftInPercent =  endPos/ total * 100 + "%";
+
+        this.style.left = leftInPercent;
+        document.getElementById( "butter-scrubber-large" ).style.left = leftInPercent;
+
       }
     });
 
-    $( ".btn-events-list" ).bind( "mouseover", function( e ) {
-      $( ".butter-video-container ").addClass("hover-state" );
+    $( ".butter-range" ).draggable(
+      { axis: "x",
+      containment: "#butter-controls-inner",
+      drag: function( event, ui ) {
+        resetView( this );
+      }
+    }).resizable({ 
+      handles: "e, w", 
+      containment: "#butter-controls-inner",
+      resize: function( event, ui ) {
+        resetView( this );
+      }
     });
-
-     $( ".btn-events-list" ).bind( "mouseout", function( e ) {
-      $( ".butter-video-container ").removeClass("hover-state" );
-    });
-
-    $(".butter-video-container").droppable({
-      hoverClass: "drag-over-state"
-    });
-
 
   }, false);
 

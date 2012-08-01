@@ -175,25 +175,6 @@ header {
   padding: 5px 10px;
 }
 
-.btn-events {
-  position:relative;
-  display: block;
-  width: 100%;
-  .box-sizing( border-box );
-  padding: 14px;
-  margin-bottom: 7px;
-  z-index: 100000;
-  cursor: move;
-  .button2( #EEE, 2%, #333, 3px, 10% );
-  &:hover{
-    .button2( #EEE, 10%, #333, 3px, 30% );
-  
-    left: -1px;
-    box-shadow: 6px 6px 0 -2px darken( @baseLight, 30% );
-    .transition( all .1s ease );
-  }
-}
-
 .icon.icon-only {
   margin-right: 0;
 }
@@ -309,6 +290,7 @@ header {
 
         &.butter-active {
           background: @green;
+          text-shadow: 0 1px 1px darken( @green, 20% );
         }
 
       }

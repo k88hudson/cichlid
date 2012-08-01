@@ -245,6 +245,16 @@
       }
     });
 
+    $( ".btn-events" ).draggable({
+      helper: "clone",
+      drag: function( event, ui ) {
+        $( ".butter-video-container ").addClass("hover-state" );
+      },
+      stop: function( event, ui ){
+        $( ".butter-video-container ").removeClass("hover-state" );
+      }
+    });
+
     $( ".btn-events-list" ).bind( "mouseover", function( e ) {
       $( ".butter-video-container ").addClass("hover-state" );
     });

@@ -2010,11 +2010,9 @@ header {
 }
 .butter-editor-inner h3 {
   margin-top: 0;
-  text-transform: uppercase;
-  font-size: .9em;
-  letter-spacing: 0.08em;
   color: #444;
-  text-shadow: 0 1px 0 #FFF;
+  font-weight: 300;
+  text-shadow: none;
 }
 .butter-editor-inner label {
   font-size: 13px;
@@ -2044,6 +2042,40 @@ header {
 .butter-editor-inner textarea {
   min-height: 100px;
   line-height: 1.25;
+}
+/*********************************************************
+* Add events
+*/
+.btn-events {
+  padding: 10px;
+  width: 110px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  line-height: 25px;
+}
+.icon-plugin {
+  float: left;
+  width: 25px;
+  height: 25px;
+  margin-right: 6px;
+}
+.plugin-text {
+  background: url(../img/plugins/text.png) no-repeat;
+}
+.plugin-link {
+  background: url(../img/plugins/link.png) no-repeat;
+}
+.plugin-twitter {
+  background: url(../img/plugins/twitter.png) no-repeat;
+}
+.plugin-image {
+  background: url(../img/plugins/image.png) no-repeat;
+}
+.plugin-map {
+  background: url(../img/plugins/map.png) no-repeat;
+}
+.plugin-toc {
+  background: url(../img/plugins/toc.png) no-repeat;
 }
 /*********************************************************
 * Stage

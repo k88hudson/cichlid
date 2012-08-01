@@ -1,0 +1,181 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Tests for cichlid</title>
+
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/ui-test.css">
+
+  <!--
+  This is for client-side compiled version of LESS.
+  See http://lesscss.org/ to learn more about LESS.
+
+  It should not be used in production or if you are
+  compiling LESS yourself.
+
+  Consider using http://livereload.com/
+
+  <link rel="stylesheet/less" href="css/test.less">
+  <script src="js/libs/less-1.3.0.min.js"></script>
+
+  -->
+
+  <script type="text/javascript" src="http://use.typekit.com/qnf5iux.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+</head>
+<body>
+  <div id="wrapper" class="butter-wrapper">
+    <!--
+    <header class="butter-header">
+      <div id="logo">Popcorn</div>
+      <div id="butter-header-buttons-left">
+  
+        <a class="butter-btn-dark"><i class="icon icon-white icon-user"></i> Logged in as Kate Hudson</a>
+    
+        <a class="butter-btn-dark">Save</a>
+      </div> 
+      <div id="butter-header-buttons-right">
+  
+        <a id="butter-editor-close-btn" class="butter-btn-dark butter-editor-close-btn"><i class="icon icon-only icon-white icon-chevron"></i></a>
+      </div> 
+    </header>
+    -->
+    <section id="stage" class="butter-stage">
+      <div id="logo">Popcorn</div>
+      <div class="butter-embed-container">
+  
+        <div id="media-source" class="butter-media-source">
+           <a cl`¡ass="butter-btn-dark"><i class="icon icon-white icon-plus"></i> Add Video Source</a>
+        </div>
+    
+        <div class="butter-video-container">
+          <video id="video" preload data-butter="media" controls>
+            <source src="http://ia700300.us.archive.org/9/items/nozon-test1/Nozon-test_512kb.mp4">
+            <source src="http://ia700300.us.archive.org/9/items/nozon-test1/Nozon-test.ogv">
+          </video>
+        </div>
+      </div>
+    </section>
+    <section id="editor" class="butter-editor">
+       <header class="butter-editor-header">
+          <ul>
+            <li class="butter-editor-title"><a class="butter-btn-dark">Add Event</a></li>
+            <li><a class="butter-btn-dark"><i class="icon icon-only icon-white icon-cog"></i></a></li>
+            <li><a class="butter-btn-dark"><i class="icon icon-only icon-white icon-share"></i></a></li>
+            <li><a class="butter-btn-dark"><i class="icon icon-only icon-white icon-pencil"></i></a></li>
+            <li><a class="butter-btn-dark butter-active"><i class="icon icon-only icon-white icon-plus"></i></a></li>
+          </ul>
+        </header>
+       
+        <div class="butter-editor-outer">
+          <div class="butter-editor-inner">            
+            <fieldset>
+              <label>Text</label>
+              <textarea>Day 2 at the Games was not without its upsets and one of the biggest might have been Spain's shock loss to Honduras. Jerry Bengtson's seventh-minute header ensured that the Spaniards, whose senior team are reigning world and European champions, will go home early following an opening defeat by Group D leaders Japan.
+              </textarea>
+            </fieldset>
+            <fieldset>
+              <label>Style</label>
+              <div class="ui-button-group ui-light">
+                <a>This is a dropdown</a>
+                <select name="stledas" id="myselect1">
+                  <option val="jeldo">dasd</option>
+                  <option val="dasda">d32fff</option>
+                </select>
+              </div>
+            </fieldset>
+            
+          </div>
+        </div>
+    </section>
+    <section id="tray" class="butter-tray">
+      <div class="butter-controls">
+        <a class="butter-btn-dark"><i class="icon icon-white icon-plus"></i> Add Video Source</a>
+      </div>
+      <div id="controls" class="butter-visuals<a class="butter-btn-dark"><i class="icon icon icon-pencil"></i> Edit media</a>add">
+        <div id="butter-controls-inner" class="butter-controls-inner">
+          <ul id="butter-visualization"></ul>
+          <span id="butter-range" class="butter-range"></span>
+          <span id="butter-scrubber" class="butter-scrubber">
+            <span class="butter-scrubber-head"></span>
+          </span>
+          
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+
+    var butter = {},
+        i,
+        l;
+
+    butter.duration = 184;
+    butter.tracks = [ 1, 2, 3 ];
+    butter.orderedTrackEvents = [
+      {
+        track: 1,
+        start: 3,
+        end: 5
+      },
+      {
+        track: 2,
+        start: 10,
+        end: 15
+      },
+      {
+        track: 2,
+        start: 24,
+        end: 30
+      },
+      {
+        track: 3,
+        start: 24,
+        end: 35
+      }
+    ];
+
+    function addVisualizationEl( obj) {
+      var dur = butter.duration,
+          el,
+          ul = document.getElementById( "butter-visualization" ),
+          start = obj.start,
+          size = obj.end - obj.start,
+          track = obj.track,
+          totalTracks = butter.tracks.length;
+
+      el = document.createElement( "li" );
+      el.style.left = start / dur * 100 + "%";
+      el.style.width = size / dur * 100 + "%";
+      el.style.top = track / totalTracks * 100 + "%";
+
+      ul.appendChild( el );
+
+    }
+
+    document.getElementById( "butter-editor-close-btn" ).addEventListener( "click", function(){
+      document.body.classList.toggle( "butter-editor-collapsed" );
+    });
+
+    document.getElementById( "edit-media" ).addEventListener( "click", function(){
+      document.body.classList.toggle( "butter-tray-collapsed" );
+    });
+
+    for ( i = 0, l = butter.orderedTrackEvents.length; i < l; i++ ) {
+      addVisualizationEl( butter.orderedTrackEvents[ i ] );
+    }
+
+    $( ".butter-scrubber" ).draggable({ axis: "x", containment: "#butter-controls-inner" });
+    $( ".butter-range" ).draggable({ axis: "x",  containment: "#butter-controls-inner" }).resizable({ handles: "e, w", containment: "#butter-controls-inner" });
+
+  </script>
+</body>
+</html>

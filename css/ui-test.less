@@ -9,24 +9,44 @@
 
 // Grid calculations
 @gridTotal: 960px;
-@gridMargin: 20px;
-@gridDivisions: 12;
+@gridMargin: 12px;
+@gridDivisions: 16;
+
 
 @gridUnit: ( @gridTotal - @gridMargin * ( @gridDivisions - 1 ) ) / @gridDivisions;
+
 .grid( @property, @units ) {
   @_value: @gridUnit * @units + @gridMargin * ( @units - 1 );
   ignore: ~`"''; @{property}: @{_value};"`;
 }
 
-// Main Sections
-@headerHeight: 1;
-@editorWidth: 5;
-@editorHeaderHeight: 0.9;
-@trayHeight: 3;
-@collapsed: 0.8;
-@controlsHeight: 0.8; // same a collapsed
+// Have to do this manually :(
+@grid-1: @gridUnit;
+@grid-2: @gridUnit * 2 + @gridMargin;
+@grid-3: @gridUnit * 3 + @gridMargin * 2;
+@grid-4: @gridUnit * 4 + @gridMargin * 3;
+@grid-5: @gridUnit * 5 + @gridMargin * 4;
+@grid-6: @gridUnit * 6 + @gridMargin * 5;
+@grid-7: @gridUnit * 7 + @gridMargin * 5;
+@grid-8: @gridUnit * 8 + @gridMargin * 2;
+@grid-9: @gridUnit * 9 + @gridMargin * 8;
+@grid-10: @gridUnit * 10 + @gridMargin * 9;
+@grid-11: @gridUnit * 11 + @gridMargin * 10;
+@grid-12: @gridUnit * 12 + @gridMargin * 11;
+@grid-13: @gridUnit * 13 + @gridMargin * 11;
+@grid-14: @gridUnit * 14 + @gridMargin * 13;
+@grid-15: @gridUnit * 15 + @gridMargin * 14;
+@grid-16: @gridUnit * 16 + @gridMargin * 15;
 
-@butterVisualsHeight: 20px;
+// Main Sections
+@headerHeight: @grid-3;
+@editorWidth: @grid-6;
+@editorHeaderHeight: @grid-1;
+@trayHeight: @grid-3;
+@collapsed: @grid-1;
+@controlsHeight: @grid-1; // same a collapsed
+
+@butterVisualsHeight: @grid-1;
 
 // Logo
 @logoWidth: 52px;
@@ -193,8 +213,8 @@ section, header {
 .butter-header {
   position: absolute;
   left: 0;
-  .grid( height, @headerHeight );
-  .grid( right, @editorWidth );
+  height: @headerHeight;
+  right: @editorWidth;
   .gradient( "vertical", @baseDark, darken( @baseDark, 5% ) );
   z-index: 100;
   border: 1px solid #111;
@@ -231,7 +251,7 @@ section, header {
   top: 0;
   right: 0;
   bottom: 0;
-  .grid( width, @editorWidth );
+  width: @editorWidth;
   .gradient( "vertical", @baseLight, darken( @baseLight, 5% ) );
   box-shadow: -2px -5px 5px 0 fade( #000, 60% ),
     inset 0 7px 2px -3px fade( #000, 40% );
@@ -241,7 +261,7 @@ section, header {
 
 .butter-editor-header {
   position: relative;
-  .grid( height, @editorHeaderHeight );
+  height: @editorHeaderHeight;
   .gradient( "vertical", @baseDark, darken( @baseDark, 5% ) );
   box-shadow: 0 1px 0 fade( lighten( @baseDark, 10% ), 25%);
   border-bottom: 5px solid @green;
@@ -269,7 +289,7 @@ section, header {
         border: none;
         box-shadow: none;
         border-radius: 0;
-        .grid( padding, @editorHeaderHeight / 2 );
+        padding: @editorHeaderHeight / 4;
 
         &.butter-active {
           background: @green;
@@ -353,8 +373,8 @@ section, header {
   text-shadow: 0 -1px 1px #000;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  .grid( height, @headerHeight );
-  .grid( line-height, @headerHeight );
+  height: @headerHeight;
+  line-height: @headerHeight;
   background: url( ../img/logo_styled.png ) no-repeat;
 }
 
@@ -363,8 +383,8 @@ section, header {
   left: 0;
   right: @editorWidth;
   top: 0;
-  .grid( right, @editorWidth );
-  .grid( bottom, @trayHeight );
+  right: @editorWidth;
+  bottom: @trayHeight;
   .gradient( "wash", darken( @baseDark, 5% ), darken( @baseDark, 10% ), lighten( @baseDark, 5% ), @noiseLight );
 }
 
@@ -414,8 +434,8 @@ section, header {
   position: absolute;
   bottom: 0;
   left: 0;
-  .grid( right, @editorWidth );
-  .grid( height, @trayHeight );
+  right: @editorWidth;
+  bottom: @trayHeight;
   background: darken( @baseDark, 5% );
   //.gradient( "vertical", @baseLight, darken( @baseLight, 10% ) );
 }
@@ -431,7 +451,7 @@ section, header {
     0 2px 5px 2px rgba( 0, 0, 0, 0.5 );
   border-width: 1px 0 1px 0;
   .gradient( "vertical", @baseDark, darken( @baseDark, 2% ) );
-  .grid( height, @controlsHeight );
+  height: @controlsHeight;
   .box-sizing( border-box );
   padding: 5px;
 
@@ -557,10 +577,10 @@ section, header {
 
 .butter-tray-collapsed {
   .butter-tray{
-    .grid( height, @collapsed );
+    height: @collapsed;
   }
   .butter-stage {
-    .grid( bottom, @collapsed );
+    bottom: @collapsed;
   }
 }
 

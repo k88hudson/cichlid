@@ -146,6 +146,7 @@ header {
 }
 
 .butter-btn-dark {
+  position: relative;
   color: #EEE;
   //border-top: 1px solid #000;
   text-shadow: @textShadow;
@@ -154,6 +155,13 @@ header {
   &:hover {
     color: #FFF;
     .btn-shadow( @baseDark, "hover" );
+  }
+}
+
+.tooltip {
+  position: relative;
+  &:hover > .butter-tooltip {
+    opacity: 1;
   }
 }
 
@@ -200,6 +208,52 @@ header {
   > i {
     margin-top: 3px;
   }
+}
+
+/*********************************************************
+* Tooltip
+*/
+
+.butter-tooltip {
+  line-height: 1.4;
+  opacity: 0;
+  .transition( opacity .3s ease );
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  margin-left: -50px;
+  background: @baseLight;
+  width: 140px;
+  height: 70px;
+  text-shadow: none;
+  color: #444;
+  font-size: 12px;
+  padding: 10px;
+  .box-sizing( border-box );
+  border-radius: 2px;
+  z-index: 100000;
+  border: 1px solid #999;
+  box-shadow: 1px 3px 7px -2px rgba( 0, 0, 0, .5 );
+
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    margin-left: -5px;
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;  
+    border-bottom: 5px solid @baseLight;
+  }
+
+  &:before {
+    top: -6px;
+    border-bottom: 5px solid #999;
+  }
+
 }
 
 

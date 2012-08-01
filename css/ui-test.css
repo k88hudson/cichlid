@@ -2400,10 +2400,12 @@ header {
 .butter-range .ui-resizable-handle.ui-resizable-w {
   left: -2px;
   cursor: w-resize;
+  background: #78b88f;
 }
 .butter-range .ui-resizable-handle.ui-resizable-e {
   right: -2px;
   cursor: e-resize;
+  background: #78b88f;
 }
 .butter-scrubber {
   position: absolute;

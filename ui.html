@@ -245,6 +245,14 @@
       }
     });
 
+    $( ".btn-events-list" ).bind( "mouseover", function( e ) {
+      $( ".butter-video-container ").addClass("hover-state" );
+    });
+
+    $( ".btn-events-list" ).bind( "mouseout", function( e ) {
+      $( ".butter-video-container ").removeClass("hover-state" );
+    });
+
   }, false);
 
   </script>

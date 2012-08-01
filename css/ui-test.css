@@ -1959,6 +1959,28 @@ header {
 .icon.icon-only {
   margin-right: 0;
 }
+.butter-play-btn,
+.butter-volume-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 30px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  box-shadow: none;
+}
+.butter-play-btn > i,
+.butter-volume-btn > i {
+  margin-top: 5px;
+}
+.butter-volume-btn {
+  width: 25px;
+  height: 25px;
+}
+.butter-volume-btn > i {
+  margin-top: 3px;
+}
 /*********************************************************
 * Header
 */
@@ -2188,23 +2210,46 @@ header {
   float: left;
   margin-right: 5px;
 }
+/*********************************************************
+* Tray sidebar
+*/
 .butter-tray-sidebar {
   position: relative;
-  z-index: 10000;
+  z-index: 20000;
   float: left;
-  width: 109.5px;
+  width: 170.25px;
   background: -moz-linear-gradient(top, #d6d6d6 0%, #e2e2e2 100%);
   background: -webkit-linear-gradient(top, #d6d6d6 0%, #e2e2e2 100%);
   background: -o-linear-gradient(top, #d6d6d6 0%, #e2e2e2 100%);
   background: -ms-linear-gradient(top, #d6d6d6 0%, #e2e2e2 100%);
   background: linear-gradient(top, #d6d6d6 0%, #e2e2e2 100%);
   height: 231px;
-  box-shadow: 0 1px 0 1px rgba(153, 153, 153, 0);
+  border-right: 1px solid #a3a3a3;
+  box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
 }
 .butter-tray-sidebar-controls {
   height: 48.75px;
+  padding: 10px;
   background: #242f33;
   width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.butter-time {
+  color: #efefef;
+  font-size: 12px;
+  margin: 0 10px;
+}
+.butter-current-time {
+  color: #78b88f;
+}
+.butter-tracks-outer {
+  position: absolute;
+  left: 170.25px;
+  height: 100%;
+  right: 0;
 }
 .butter-tracks-container {
   position: relative;
@@ -2214,11 +2259,17 @@ header {
 }
 .butter-tracks {
   position: relative;
+  width: 2000px;
+  height: 100%;
+}
+.butter-tracks ul {
+  position: relative;
+  width: 100%;
+  height: 99px;
+  top: 20.75px;
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 2000px;
-  height: 105px;
 }
 .butter-tracks li {
   position: absolute;
@@ -2231,7 +2282,7 @@ header {
   border: 1px solid rgba(0, 0, 0, 0.3);
   box-shadow: inset 0 1px 0 #ffffff, 0 1px 1px rgba(0, 0, 0, 0.8);
   border-radius: 5px;
-  height: 30px;
+  height: 28px;
   margin-bottom: 5px;
 }
 .butter-controls {
@@ -2248,12 +2299,13 @@ header {
   padding: 14px;
 }
 .butter-controls:hover .ui-resizable-handle {
-  background: #efefef;
+  background: #78b88f;
 }
 .butter-controls-inner {
   position: relative
   display: block;
-  height: 8px;
+  height: 10px;
+  margin-top: 5px;
   display: block;
   background: #E7EEF1;
   border-radius: 5px;
@@ -2262,12 +2314,13 @@ header {
 .butter-scrubber-large {
   position: absolute;
   cursor: move;
-  top: 21px;
+  z-index: 100000;
+  top: 28px;
   left: 200px;
-  padding-bottom: 40px;
+  padding-bottom: 50px;
   width: 1px;
   height: 100px;
-  background: #cb2408;
+  background: rgba(203, 36, 8, 0.5);
 }
 .butter-scrubber-head {
   position: absolute;
@@ -2286,20 +2339,20 @@ header {
 */
 .butter-visuals {
   position: absolute;
-  bottom: 0;
-  left: 109.5px;
+  bottom: 10px;
+  left: 0;
   right: 0;
   z-index: 100;
-  background: -moz-linear-gradient(top, #d6d6d6 0%, #bcbcbc 100%);
-  background: -webkit-linear-gradient(top, #d6d6d6 0%, #bcbcbc 100%);
-  background: -o-linear-gradient(top, #d6d6d6 0%, #bcbcbc 100%);
-  background: -ms-linear-gradient(top, #d6d6d6 0%, #bcbcbc 100%);
-  background: linear-gradient(top, #d6d6d6 0%, #bcbcbc 100%);
+  background: -moz-linear-gradient(top, #d6d6d6 0%, #e2e2e2 100%);
+  background: -webkit-linear-gradient(top, #d6d6d6 0%, #e2e2e2 100%);
+  background: -o-linear-gradient(top, #d6d6d6 0%, #e2e2e2 100%);
+  background: -ms-linear-gradient(top, #d6d6d6 0%, #e2e2e2 100%);
+  background: linear-gradient(top, #d6d6d6 0%, #e2e2e2 100%);
   border: 1px solid rgba(57, 75, 81, 0.25);
-  border-bottom-color: #777;
-  box-shadow: inset 0 1px 0 #fcfcfc, 0 3px 20px rgba(0, 0, 0, 0.3);
+  border-top-color: #AAA;
+  box-shadow: 0 1px 0 #fcfcfc;
   border-width: 1px 0 1px 0;
-  padding: 9.75px;
+  padding: 3;
 }
 .butter-visuals .butter-visuals-inner {
   position: relative;
@@ -2307,8 +2360,6 @@ header {
   height: 32.5px;
   display: block;
   background: rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  border-top: 1px solid #707070;
 }
 #butter-visualization {
   position: absolute;
@@ -2322,7 +2373,7 @@ header {
 #butter-visualization li {
   position: absolute;
   height: 3px;
-  background: #cb2408;
+  background: #242f33;
 }
 .butter-range {
   position: absolute;
@@ -2336,6 +2387,7 @@ header {
   background: linear-gradient(top, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.07) 100%);
   border: 3px solid #FFF;
   box-shadow: inset 0 1px 2px 1px rgba(0, 0, 0, 0.5);
+  cursor: move;
 }
 .butter-range .ui-resizable-handle {
   display: block;
@@ -2344,22 +2396,22 @@ header {
   height: 14px;
   width: 4px;
   margin-top: -7px;
-  cursor: pointer;
 }
 .butter-range .ui-resizable-handle.ui-resizable-w {
   left: -2px;
+  cursor: w-resize;
 }
 .butter-range .ui-resizable-handle.ui-resizable-e {
   right: -2px;
+  cursor: e-resize;
 }
 .butter-scrubber {
   position: absolute;
   cursor: move;
   left: 30px;
-  top: -5px;
-  padding-bottom: 2px;
+  top: 0;
+  bottom: 0;
   width: 1px;
-  height: 48.75px;
   background: #cb2408;
 }
 /*********************************************************

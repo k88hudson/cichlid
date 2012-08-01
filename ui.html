@@ -29,22 +29,7 @@
 </head>
 <body>
   <div id="wrapper" class="butter-wrapper">
-       <!--
-
-    <header class="butter-header">
-      <div id="logo">Popcorn</div>
-       <div id="butter-header-buttons-left">
-  
-        <a class="butter-btn-dark"><i class="icon icon-white icon-user"></i> Logged in as Kate Hudson</a>
-    
-        <a class="butter-btn-dark">Save</a>
-      </div> 
-      <div id="butter-header-buttons-right">
-  
-        <a id="butter-editor-close-btn" class="butter-btn-dark butter-editor-close-btn"><i class="icon icon-only icon-white icon-chevron"></i></a>
-      </div> 
-    </header>
-  -->
+     
 
     <section id="stage" class="butter-stage">
       <div class="butter-embed-container">
@@ -65,9 +50,8 @@
        <header class="butter-editor-header">
           <ul>
             <li class="butter-editor-title"><a class="butter-btn-dark">Add Event</a></li>
-            <li><a class="butter-btn-dark"><i class="icon icon-white icon-cog"></i></a></li>
-            <li><a class="butter-btn-dark"><i class="icon icon-white icon-share"></i>Share</a></li>
-            <!--<li><a class="butter-btn-dark"><i class="icon icon-white icon-pencil"></i>Edit</a></li>-->
+            <li><a class="butter-btn-dark"><i class="icon icon-white icon-only icon-cog"></i></a></li>
+            <li><a class="butter-btn-dark"><i class="icon icon-white icon-only icon-share"></i></a></li>
             <li><a class="butter-btn-dark butter-active"><i class="icon icon-only icon-white icon-plus"></i></a></li>
           </ul>
         </header>
@@ -94,48 +78,37 @@
           </div>
         </div>
     </section>
-    <!--
-    <section id="tray" class="butter-tray">
-      <div class="butter-controls">
-        <a class="butter-btn-dark"><i class="icon icon-white icon-plus"></i> Add Video Source</a>
-      </div>
-      <div id="controls" class="butter-visuals<a class="butter-btn-dark"><i class="icon icon icon-pencil"></i> Edit media</a>add">
-        <div id="butter-controls-inner" class="butter-controls-inner">
-          <ul id="butter-visualization"></ul>
-          <span id="butter-range" class="butter-range"></span>
-          <span id="butter-scrubber" class="butter-scrubber">
-            <span class="butter-scrubber-head"></span>
-          </span>
-          
-        </div>
-      </div>
-    </section>
-  -->
-
    <section id="tray" class="butter-tray">
     <div class="butter-tray-sidebar">
       <div class="butter-tray-sidebar-controls">
-         <a class="butter-btn-dark"><i class="icon icon-white icon-only icon-play"></i></a>
+         <a class="butter-btn-dark butter-play-btn"><i class="icon icon-white icon-only icon-play"></i></a>
+         <span class="butter-time"><span class="butter-current-time">15.42</span> / 24.13</span>
+         <a class="butter-btn-dark butter-volume-btn"><i class="icon icon-white icon-only icon-volume-down"></i></a>
       </div>
       <div class="butter-tray-layers"></div>
     </div>
-    <div id="butter-tracks-container" class="butter-tracks-container">
-        <div id="butter-tracks" class="butter-tracks">
-          <div id="controls" class="butter-controls">
-            <div class="butter-controls-inner"></div>
+    <div class="butter-tracks-outer">
+      <div id="butter-tracks-container" class="butter-tracks-container">
+          
+          <div id="butter-tracks" class="butter-tracks">
+            <div id="controls" class="butter-controls">
+              <div class="butter-controls-inner"></div>
+            </div>
+            <span id="butter-scrubber-large" class="butter-scrubber-large">
+              <span class="butter-scrubber-head"></span>
+            </span> 
+           <ul></ul> 
           </div>
+      </div>
+
+      <div id="butter-visuals" class="butter-visuals">
+        <div id="butter-controls-inner" class="butter-visuals-inner">
+          <ul id="butter-visualization"></ul>
+          <span id="butter-range" class="butter-range">  
+          </span>
+          <span id="butter-scrubber" class="butter-scrubber">
+          </span> 
         </div>
-    </div>
-    <span id="butter-scrubber-large" class="butter-scrubber-large">
-        <span class="butter-scrubber-head"></span>
-    </span>
-    <div id="butter-visuals" class="butter-visuals">
-      <div id="butter-controls-inner" class="butter-visuals-inner">
-        <ul id="butter-visualization"></ul>
-        <span id="butter-range" class="butter-range">  
-        </span>
-        <span id="butter-scrubber" class="butter-scrubber">
-        </span> 
       </div>
     </div>
   </section>
@@ -192,7 +165,7 @@
           el,
           trackEl,
           ul = document.getElementById( "butter-visualization" ),
-          tracks = document.getElementById( "butter-tracks" ),
+          tracks = document.querySelector( "#butter-tracks > ul" ),
           start = obj.start,
           end = obj.end,
           track = obj.track,
@@ -209,11 +182,6 @@
       tracks.appendChild( trackEl );
 
     }
-
-    /*
-    document.getElementById( "butter-editor-close-btn" ).addEventListener( "click", function(){
-      document.body.classList.toggle( "butter-editor-collapsed" );
-    }); */
 
     for ( i = 0, l = butter.orderedTrackEvents.length; i < l; i++ ) {
       addVisualizationEl( butter.orderedTrackEvents[ i ] );
@@ -264,7 +232,7 @@
 
       },
       stop: function( event, ui ) {
-        var total = $( "#butter-controls-inner" ).width(),
+        var total = $( "#butter-tracks" ).width(),
             endPos = ui.position.left,
             leftInPercent =  endPos/ total * 100 + "%";
 

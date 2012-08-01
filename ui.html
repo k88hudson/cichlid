@@ -136,11 +136,15 @@
 
 
   </div>
-
+<!--
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+-->
+  <script src="js/libs/jquery.js"></script>
+  <script src="js/libs/jquery.ui.js"></script>
   <script src="js/script.js"></script>
   <script>
+  document.addEventListener( "DOMContentLoaded", function(){
 
     var butter = {},
         i,
@@ -214,11 +218,12 @@
       $( ".butter-video-container ").removeClass("hover-state" );
     });
 
-
-
     $(".butter-video-container").droppable({
       hoverClass: "drag-over-state"
     });
+
+
+  }, false);
 
   </script>
 </body>

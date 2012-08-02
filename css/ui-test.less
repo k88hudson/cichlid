@@ -158,13 +158,6 @@ header {
   }
 }
 
-.tooltip {
-  position: relative;
-  &:hover > .butter-tooltip {
-    opacity: 1;
-  }
-}
-
 .butter-btn-red {
   color: #EEE;
   text-shadow:0 -1px 0 darken( @rouge, 20% );
@@ -214,46 +207,59 @@ header {
 * Tooltip
 */
 
+.tooltip {
+  position: relative;
+  &:hover > .butter-tooltip {
+    opacity: 1;
+    > div { margin-top: 10px; }
+  }
+}
+
 .butter-tooltip {
-  line-height: 1.4;
   opacity: 0;
-  .transition( opacity .3s ease );
   position: absolute;
-  top: 40px;
+  top: 90%;
   left: 50%;
-  margin-left: -50px;
-  background: @baseLight;
-  width: 140px;
-  height: 70px;
-  text-shadow: none;
-  color: #444;
-  font-size: 12px;
-  padding: 10px;
-  .box-sizing( border-box );
-  border-radius: 2px;
+  margin-top: -10px;
+  margin-left: -60px;
   z-index: 100000;
-  border: 1px solid #999;
-  box-shadow: 1px 3px 7px -2px rgba( 0, 0, 0, .5 );
+  overflow: hidden;
+  .transition( all .3s ease );
+  > div {
+    position: relative;
+    line-height: 1.4;
+    margin-top: -1000px;
+    width: 120px;
+    background: @baseLight;
+    text-shadow: none;
+    color: #444;
+    font-size: 12px;
+    padding: 10px;
+    .box-sizing( border-box );
+    border-radius: 2px;
+    
+    border: 1px solid #999;
+    box-shadow: 1px 3px 7px -2px rgba( 0, 0, 0, .5 );
 
-  &:after,
-  &:before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    margin-left: -5px;
-    width: 0; 
-    height: 0; 
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;  
-    border-bottom: 5px solid @baseLight;
+    &:after,
+    &:before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      margin-left: -5px;
+      width: 0; 
+      height: 0; 
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;  
+      border-bottom: 5px solid @baseLight;
+    }
+
+    &:before {
+      top: -6px;
+      border-bottom: 5px solid #999;
+    }
   }
-
-  &:before {
-    top: -6px;
-    border-bottom: 5px solid #999;
-  }
-
 }
 
 
@@ -415,12 +421,20 @@ header {
 */
 
 .btn-events {
+  position: relative;
   padding: 10px;
   width: 110px;
   margin-bottom: 10px;
   margin-right: 10px;
   line-height: 25px;
   cursor: move;
+
+  &:hover {
+    left: -2px;
+    top: -2px;
+    box-shadow: 4px 4px 0 -2px rgba( 0, 0, 0, .3 );
+  }
+
 }
 
 .icon-plugin {

@@ -1820,12 +1820,6 @@ header {
   color: #FFF;
   box-shadow: inset 0 1px 0 #445860, 0 -1px 0 #000000, 0 1px 0 #060809, 1px 0 0 #192124, -1px 0 0 #192124, 0 2px 2px rgba(0, 0, 0, 0.5);
 }
-.tooltip {
-  position: relative;
-}
-.tooltip:hover > .butter-tooltip {
-  opacity: 1;
-}
 .butter-btn-red {
   color: #EEE;
   text-shadow: 0 -1px 0 #691304;
@@ -1907,21 +1901,36 @@ header {
 /*********************************************************
 * Tooltip
 */
+.tooltip {
+  position: relative;
+}
+.tooltip:hover > .butter-tooltip {
+  opacity: 1;
+}
+.tooltip:hover > .butter-tooltip > div {
+  margin-top: 10px;
+}
 .butter-tooltip {
-  line-height: 1.4;
   opacity: 0;
-  -webkit-transition: opacity 0.3s ease;
-  -moz-transition: opacity 0.3s ease;
-  -o-transition: opacity 0.3s ease;
-  -ms-transition: opacity 0.3s ease;
-  transition: opacity 0.3s ease;
   position: absolute;
-  top: 40px;
+  top: 90%;
   left: 50%;
-  margin-left: -50px;
+  margin-top: -10px;
+  margin-left: -60px;
+  z-index: 100000;
+  overflow: hidden;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.butter-tooltip > div {
+  position: relative;
+  line-height: 1.4;
+  margin-top: -1000px;
+  width: 120px;
   background: #efefef;
-  width: 140px;
-  height: 70px;
   text-shadow: none;
   color: #444;
   font-size: 12px;
@@ -1931,12 +1940,11 @@ header {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
   border-radius: 2px;
-  z-index: 100000;
   border: 1px solid #999;
   box-shadow: 1px 3px 7px -2px rgba(0, 0, 0, 0.5);
 }
-.butter-tooltip:after,
-.butter-tooltip:before {
+.butter-tooltip > div:after,
+.butter-tooltip > div:before {
   content: "";
   position: absolute;
   top: -5px;
@@ -1948,7 +1956,7 @@ header {
   border-right: 5px solid transparent;
   border-bottom: 5px solid #efefef;
 }
-.butter-tooltip:before {
+.butter-tooltip > div:before {
   top: -6px;
   border-bottom: 5px solid #999;
 }
@@ -2102,12 +2110,18 @@ header {
 * Add events
 */
 .btn-events {
+  position: relative;
   padding: 10px;
   width: 110px;
   margin-bottom: 10px;
   margin-right: 10px;
   line-height: 25px;
   cursor: move;
+}
+.btn-events:hover {
+  left: -2px;
+  top: -2px;
+  box-shadow: 4px 4px 0 -2px rgba(0, 0, 0, 0.3);
 }
 .icon-plugin {
   float: left;

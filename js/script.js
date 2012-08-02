@@ -58,7 +58,7 @@ document.addEventListener( "DOMContentLoaded", function(){
 
 
   //SCROLL STUFF
-  
+  /*
   window.addEventListener( "scroll", function( e ){
     var logo = document.getElementById( "logo" ),
         scrollTop = window.scrollY,
@@ -77,7 +77,7 @@ document.addEventListener( "DOMContentLoaded", function(){
 
   }, false );
 
-
+*/
 
 }, false);
 

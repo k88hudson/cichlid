@@ -327,9 +327,6 @@
     });
 
     // ON LOAD, SHOW TOOLTIP
-    $( "#media-tab" ).append( '<div class="butter-tooltip">' +
-     '<div>Add your video URL here</div>' +
-      '</div>' );
 
     function hideToolTip() {
       $( "#media-tab > .butter-tooltip" ).removeClass( "tooltip-on" );
@@ -337,13 +334,21 @@
       document.getElementById( "media-tab" ).removeEventListener( "click", hideToolTip );
     }
 
-    window.setTimeout( function(){
-      $( "#media-tab > .butter-tooltip" ).addClass( "tooltip-on" );
-      $( "#media-tab" ).bind( "hover", hideToolTip );
+    $( "#media-tab" ).append( '<div class="butter-tooltip">' +
+     '<div>Add your video URL here</div>' +
+      '</div>' );
 
-      document.body.addEventListener( "click", hideToolTip, false );
+    if ( !hash ) {
 
-    }, 1000 );
+      window.setTimeout( function(){
+        $( "#media-tab > .butter-tooltip" ).addClass( "tooltip-on" );
+        $( "#media-tab" ).bind( "hover", hideToolTip );
+
+        document.body.addEventListener( "click", hideToolTip, false );
+
+      }, 1000 );
+      
+    }
 
     // EDITOR STUFF
     $( ".butter-editor-header > ul a" ).bind( "click", function( e ) {

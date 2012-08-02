@@ -33,7 +33,7 @@
 @grid-16: @gridUnit * 16 + @gridMargin * 15;
 
 // Main Sections
-@headerHeight: @grid-3;
+@headerHeight: @grid-2;
 @editorWidth: @grid-6;
 @editorHeaderHeight: @grid-1;
 @trayHeight: @grid-4;
@@ -103,7 +103,7 @@ header {
   padding: 6px 10px;
   border-radius: 2px;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .btn-shadow( @color ) {
@@ -268,28 +268,59 @@ header {
 */
 
 .butter-header {
-  position: absolute;
-  left: 0;
-  height: @headerHeight;
-  right: @editorWidth;
-  .gradient( "vertical", @baseDark, darken( @baseDark, 3% ) );
   z-index: 100;
-  border: 1px solid #111;
-  border-width: 1px 0 1px 0;
-  box-shadow: 0 1px 0 fade( lighten( @baseDark, 10% ), 25%);
+  padding: 20px 0;
+  .clearfix();
 }
 
-#butter-header-buttons-left {
-  padding-top: @buttonTopSpacing;
-  margin-left: @gridMargin;
+.butter-logo {
+  position: relative;
   float: left;
+  height: 65px;
+  width: 170px;
+  background: url( ../img/logo-words.png ) no-repeat;
+  z-index: 100000;
 }
 
-#butter-header-buttons-right {
-  padding-top: @buttonTopSpacing;
-  margin-right: -1px;
-  margin-top: -7px;
-  float: right;
+.butter-header-buttons-left {
+  margin-top: 15px;
+  display: inline-block;
+  line-height: 24px;
+  .clearfix();
+  > a {
+    float: left;
+  }
+}
+
+.butter-btn-group {
+  float: left;
+  padding: 0;
+
+  > a {
+    position: relative;
+    float: left;
+    border-radius: 0;
+    &:first-child {
+      left: 3px;
+      border-radius: 2px 0 0 2px;
+    }
+    &:last-child {
+      left: -3px;
+      border-radius: 0 2px 2px 0;
+    }
+  }
+}
+
+.butter-avatar {
+  float: left;
+  height: 24px;
+  width: 24px;
+  background: url( ../img/brett.png ) no-repeat;
+  margin-right: 5px;
+}
+
+#butter-btn-save {
+  margin-left: 10px;
 }
 
 /*********************************************************
@@ -473,20 +504,6 @@ header {
 * Stage
 */
 
-#logo {
-  padding-left: @logoWidth;
-  font-size: 18px;
-  font-weight: 300;
-  margin-left: @gridMargin;
-  color: @baseLight;
-  text-shadow: 0 -1px 1px #000;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  height: @headerHeight;
-  line-height: @headerHeight;
-  background: url( ../img/logo_styled.png ) no-repeat;
-}
-
 .butter-stage {
   position: absolute;
   left: 0;
@@ -500,7 +517,6 @@ header {
 .butter-embed-container {
   .videoSize( @videoDesktop );
   margin: 0 auto;
-  margin-top: 20px;
 }
 
 .butter-media-source {
@@ -851,6 +867,13 @@ header {
 @media only screen and ( min-width: @mediaTabletMin ) and ( max-width: @mediaTabletMax ) {
   .butter-embed-container {
     .videoSize( @videoTablet );
+  }
+}
+
+/* Mobile */
+@media only screen and ( max-width: @mediaSmallMax )  {
+  .mobile-hide {
+    display: none;
   }
 }
 

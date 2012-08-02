@@ -1786,7 +1786,7 @@ header {
   padding: 6px 10px;
   border-radius: 2px;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
 }
 [class^="butter-btn-"]:hover,
 [class^=" butter-btn-"]:hover {
@@ -1964,30 +1964,71 @@ header {
 * Header
 */
 .butter-header {
-  position: absolute;
-  left: 0;
-  height: 170.25px;
-  right: 352.5px;
-  background: -moz-linear-gradient(top, #242f33 0%, #1e272a 100%);
-  background: -webkit-linear-gradient(top, #242f33 0%, #1e272a 100%);
-  background: -o-linear-gradient(top, #242f33 0%, #1e272a 100%);
-  background: -ms-linear-gradient(top, #242f33 0%, #1e272a 100%);
-  background: linear-gradient(top, #242f33 0%, #1e272a 100%);
   z-index: 100;
-  border: 1px solid #111;
-  border-width: 1px 0 1px 0;
-  box-shadow: 0 1px 0 rgba(57, 75, 81, 0.25);
+  padding: 20px 0;
+  *zoom: 1;
+  *zoom: 1;
 }
-#butter-header-buttons-left {
-  padding-top: 15px;
-  margin-left: 12px;
+.butter-header:before,
+.butter-header:after {
+  content: "";
+  display: table;
+}
+.butter-header:after {
+  clear: both;
+}
+.butter-logo {
+  position: relative;
+  float: left;
+  height: 65px;
+  width: 170px;
+  background: url(../img/logo-words.png) no-repeat;
+  z-index: 100000;
+}
+.butter-header-buttons-left {
+  margin-top: 15px;
+  display: inline-block;
+  line-height: 24px;
+  *zoom: 1;
+  *zoom: 1;
+}
+.butter-header-buttons-left:before,
+.butter-header-buttons-left:after {
+  content: "";
+  display: table;
+}
+.butter-header-buttons-left:after {
+  clear: both;
+}
+.butter-header-buttons-left > a {
   float: left;
 }
-#butter-header-buttons-right {
-  padding-top: 15px;
-  margin-right: -1px;
-  margin-top: -7px;
-  float: right;
+.butter-btn-group {
+  float: left;
+  padding: 0;
+}
+.butter-btn-group > a {
+  position: relative;
+  float: left;
+  border-radius: 0;
+}
+.butter-btn-group > a:first-child {
+  left: 3px;
+  border-radius: 2px 0 0 2px;
+}
+.butter-btn-group > a:last-child {
+  left: -3px;
+  border-radius: 0 2px 2px 0;
+}
+.butter-avatar {
+  float: left;
+  height: 24px;
+  width: 24px;
+  background: url(../img/brett.png) no-repeat;
+  margin-right: 5px;
+}
+#butter-btn-save {
+  margin-left: 10px;
 }
 /*********************************************************
 * Editor
@@ -2150,19 +2191,6 @@ header {
 /*********************************************************
 * Stage
 */
-#logo {
-  padding-left: 52px;
-  font-size: 18px;
-  font-weight: 300;
-  margin-left: 12px;
-  color: #efefef;
-  text-shadow: 0 -1px 1px #000000;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  height: 170.25px;
-  line-height: 170.25px;
-  background: url(../img/logo_styled.png) no-repeat;
-}
 .butter-stage {
   position: absolute;
   left: 0;
@@ -2182,7 +2210,6 @@ header {
   width: 853px;
   height: 478.74625000000003px;
   margin: 0 auto;
-  margin-top: 20px;
 }
 .butter-media-source {
   padding: 10px 0;
@@ -2481,6 +2508,12 @@ header {
   .butter-embed-container {
     width: 640px;
     height: 359.20000000000005px;
+  }
+}
+/* Mobile */
+@media only screen and (max-width: 1074px) {
+  .mobile-hide {
+    display: none;
   }
 }
 /* Desktops and laptops ----------- */

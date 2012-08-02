@@ -2251,6 +2251,7 @@ header {
   padding: 10px 0;
 }
 .butter-video-container {
+  position: relative;
   width: 100%;
   height: 100%;
   box-shadow: inset 0 0 0 1px #040606, 0 1px 0 0 #2a373c;
@@ -2497,6 +2498,47 @@ header {
   bottom: 0;
   width: 1px;
   background: #cb2408;
+}
+/*********************************************************
+* Overlay
+*/
+.edit-media-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+  width: 100%;
+  background: rgba(36, 47, 51, 0.5);
+  -webkit-transition: height 0.3s ease;
+  -moz-transition: height 0.3s ease;
+  -o-transition: height 0.3s ease;
+  -ms-transition: height 0.3s ease;
+  transition: height 0.3s ease;
+  overflow: hidden;
+  color: #EEE;
+}
+.edit-media-overlay h3 {
+  margin-top: 0;
+}
+.edit-media-overlay.off {
+  height: 0;
+  -webkit-transition: height 0.3s ease;
+  -moz-transition: height 0.3s ease;
+  -o-transition: height 0.3s ease;
+  -ms-transition: height 0.3s ease;
+  transition: height 0.3s ease;
+}
+.html5-fields {
+  display: none;
+}
+.html5-fields .warning {
+  border: 1px solid #cb2408;
+}
+.html5-fields .warning::-webkit-input-placeholder {
+  color: #cb2408;
+}
+.html5-fields .warning:-moz-placeholder {
+  color: #cb2408;
 }
 /*********************************************************
 * Collapsed states

@@ -14,6 +14,14 @@
 
 </head>
 <body>
+  <script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=179656678785574";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
   <div id="wrapper" class="butter-wrapper">
 
     <section id="stage" class="butter-stage">
@@ -48,7 +56,7 @@
           <li><a href="#media" class="butter-btn-dark"><i class="icon icon-white icon-film"></i>Media</a></li>
           <li><a href="#popcorn" class="butter-btn-dark butter-active"><i class="icon icon-white icon-comment"></i>Popcorn</a></li>
           <li><a href="#share" class="butter-btn-dark"><i class="icon icon-white icon-share"></i>Share</a></li>
-          <li class="fl-right"><a href="#settings" class="butter-btn-dark"><i class="icon icon-white icon-cog"></i></a></li>  
+          <li class="fl-right"><a href="#settings" class="butter-btn-dark"><i class="icon icon-only icon-white icon-cog"></i></a></li>  
         </ul>
       </header>
 
@@ -58,17 +66,10 @@
           <div class="butter-editor-inner">  
             <fieldset>
               <label>Add a URL</label>
-              <input type="text" value="hello">
+              <input type="text" placeholder="http://" value="http://ia700300.us.archive.org/9/items/nozon-test1/Nozon-test_512kb.mp4">
             </fieldset>          
             <fieldset>
-              <!--<div class="ui-button-group ui-light">
-                <a>This is a dropdown</a>
-                <select name="stledas" id="myselect1">
-                  <option val="jeldo">dasd</option>
-                  <option val="dasda">d32fff</option>
-                </select>
-              </div>
-              -->
+          
             </fieldset>
           </div>
         </div>
@@ -78,6 +79,9 @@
         <div class="butter-editor-breadcrumbs">Event Menu</div>
         <div class="butter-editor-outer">
           <div class="butter-editor-inner">  
+            <fieldset>
+              <input class="big" type="search" placeholder="Search">
+            </fieldset>
             <fieldset class="btn-events-list">
                 <a class="btn-light btn-events tooltip"><i class="icon-plugin plugin-text"></i>
                   Text
@@ -106,22 +110,30 @@
       </div><!-- #popcorn -->
 
       <div data-panel="share" class="butter-editor-panel">
-        <div class="butter-editor-breadcrumbs">Share with your friends</div>
+        <div class="butter-editor-breadcrumbs">Share your project</div>
         <div class="butter-editor-outer">
-          <div class="butter-editor-inner">  
-            <fieldset class="btn-events-list">
-              Blah
-            </fieldset>          
+          <div class="butter-editor-inner">       
             <fieldset>
-              <!--<div class="ui-button-group ui-light">
-                <a>This is a dropdown</a>
+              <input class="big" type="text" value="http://popco.rn/1d02J" disabled="true">
+            </fieldset>
+            <fieldset>
+              <label>Share</label>
+              <div id="fb-root"></div>
+              <div class="fb-like" data-send="false" data-width="200" data-show-faces="true"></div>
+              <div><a href="https://twitter.com/share" class="twitter-share-button" data-via="k88hudson">Tweet</a></div>
+              <g:plusone annotation="inline"></g:plusone>
+            </fieldset>
+            <fieldset class="btn-events-list">
+              <label>Embed</label>
+              <div class="ui-button-group ui-light">
+                <a>iFrame Embed</a>
                 <select name="stledas" id="myselect1">
-                  <option val="jeldo">dasd</option>
-                  <option val="dasda">d32fff</option>
+                  <option val="jeldo">Tumblr</option>
+                  <option val="dasda">Wordpress</option>
                 </select>
               </div>
-              -->
-            </fieldset>
+              <textarea><iframe src="http://popco.rn/embed/1d02J"></iframe></textarea>
+            </fieldset>  
           </div>
         </div>
       </div><!-- #share -->
@@ -130,18 +142,20 @@
         <div class="butter-editor-breadcrumbs">Project Settings</div>
         <div class="butter-editor-outer">
           <div class="butter-editor-inner">  
-            <fieldset class="btn-events-list">
-              Blah
-            </fieldset>          
             <fieldset>
-              <!--<div class="ui-button-group ui-light">
-                <a>This is a dropdown</a>
-                <select name="stledas" id="myselect1">
-                  <option val="jeldo">dasd</option>
-                  <option val="dasda">d32fff</option>
-                </select>
-              </div>
-              -->
+              <label>Project Title</label>
+              <input type="text" placeholder="My Project">
+            </fieldset>
+            <fieldset>
+              <label>Author</label>
+              <input type="text" value="Kate Hudson">
+            </fieldset>
+            <fieldset>
+              <label>Description</label>
+              <textarea></textarea>
+            </fieldset>        
+            <fieldset>
+              <a class="butter-btn-green">Save Changes</a>
             </fieldset>
           </div>
         </div>
@@ -190,6 +204,18 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
 -->
+  
+  <!-- Gross share button widgets -->
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+  <script type="text/javascript">
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
+
   <script src="js/libs/jquery.js"></script>
   <script src="js/libs/jquery.ui.js"></script>
   <script src="js/libs/jquery.localScroll.min.js"></script>

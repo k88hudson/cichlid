@@ -286,6 +286,27 @@
       addVisualizationEl( butter.orderedTrackEvents[ i ] );
     }
 
+    function openPanel ( hash ) {
+      var panel = hash.replace( "#", "" );
+
+      if ( panel === "collapse" ) {
+        document.body.classList.toggle( "butter-editor-collapsed" );
+      } else {
+        $( ".butter-panel-active" ).removeClass( "butter-panel-active" );
+        $( "[data-panel=\"" + panel + "\"]" ).addClass( "butter-panel-active" );
+
+        $( ".butter-active" ).removeClass( "butter-active" );
+        $( "a[href=\""+ hash + "\"]" ).addClass( "butter-active" );
+      }
+
+    }
+
+    // ON LOAD, read hash
+    var hash = window.location.hash;
+    if ( hash ) {
+      openPanel ( hash );
+    }
+
     // ON LOAD, SHOW TOOLTIP
     $( "#media-tab" ).append( '<div class="butter-tooltip">' +
      '<div>Add your video URL here</div>' +
@@ -299,21 +320,7 @@
 
     // EDITOR STUFF
     $( ".butter-editor-header > ul a" ).bind( "click", function( e ) {
-      e.preventDefault();
-      var panel = this.hash.replace( "#", "" );
-
-      if ( panel === "collapse" ) {
-        document.body.classList.toggle( "butter-editor-collapsed" );
-      } else {
-        $( ".butter-panel-active" ).removeClass( "butter-panel-active" );
-        $( "[data-panel=\"" + panel + "\"]" ).addClass( "butter-panel-active" );
-
-        $( ".butter-active" ).removeClass( "butter-active" );
-        $( this ).addClass( "butter-active" );
-      }
-
-      
-
+      openPanel ( this.hash );
     });
 
     // TRAY STUFF

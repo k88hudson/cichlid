@@ -29,12 +29,13 @@
         <header class="butter-header">
           <div class="butter-logo"></div>
           <div class="butter-header-buttons-left">
-            <div class="butter-btn-group">
-              <a class="butter-btn-dark"><span class="butter-avatar"></span><span class="mobile-hide">brett_gaylor</a>
-              <a class="butter-btn-dark"><strong><span class="mobile-hide">Project: </strong>Newscaster</span></a>
-            </div>
+            <a class="butter-btn-green butter-login-false"><i class="icon icon-white icon-user"></i> Login</a>
             
-            <a id="butter-btn-save" class="butter-btn-green">Save</a>
+            <div class="butter-btn-group butter-login-true">
+                <a class="butter-btn-dark"><span class="butter-avatar"></span><span class="mobile-hide">brett_gaylor</a>
+              <a class="butter-btn-dark "><strong><span class="mobile-hide">Project: </strong>Newscaster</span></a>
+            </div>
+            <a id="butter-btn-save" class="butter-btn-green butter-login-true">Save</a>
           </div>
         </header>
 
@@ -372,6 +373,13 @@
 
       $( ".html5-fields" ).fadeIn();
 
+    });
+
+    // LOGIN STUFF
+    $( ".butter-login-true" ).hide();
+    $( ".butter-login-false" ).click( function() {
+      $( ".butter-login-false" ).hide();
+      $( ".butter-login-true" ).show();
     });
 
     // EDITOR STUFF

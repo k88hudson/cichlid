@@ -1805,7 +1805,8 @@ header {
 [class^="butter-btn-"] + [class^="butter-btn-"] {
   margin-left: 3px;
 }
-.butter-btn-dark {
+.butter-btn-dark,
+.butter-btn-dark:visited {
   position: relative;
   color: #EEE;
   text-shadow: 0 -2px 0 #000000;
@@ -1816,23 +1817,25 @@ header {
   background: -ms-linear-gradient(top, #2a373c 0%, #20292d 100%);
   background: linear-gradient(top, #2a373c 0%, #20292d 100%);
 }
-.butter-btn-dark:hover {
+.butter-btn-dark:hover,
+.butter-btn-dark:visited:hover {
   color: #FFF;
   box-shadow: inset 0 1px 0 #445860, 0 -1px 0 #000000, 0 1px 0 #060809, 1px 0 0 #192124, -1px 0 0 #192124, 0 2px 2px rgba(0, 0, 0, 0.5);
 }
-.butter-btn-red {
-  color: #EEE;
-  text-shadow: 0 -1px 0 #691304;
-  box-shadow: inset 0 1px 0 #f63110, 0 -1px 0 #691304, 0 1px 0 #9a1b06, 1px 0 0 #b22007, -1px 0 0 #b22007;
-  background: -moz-linear-gradient(top, #cb2408 0%, #ae1f07 100%);
-  background: -webkit-linear-gradient(top, #cb2408 0%, #ae1f07 100%);
-  background: -o-linear-gradient(top, #cb2408 0%, #ae1f07 100%);
-  background: -ms-linear-gradient(top, #cb2408 0%, #ae1f07 100%);
-  background: linear-gradient(top, #cb2408 0%, #ae1f07 100%);
-}
-.butter-btn-red:hover {
+.butter-btn-green {
+  position: relative;
   color: #FFF;
-  box-shadow: inset 0 1px 0 #f74629, 0 -1px 0 #691304, 0 1px 0 #861805, 1px 0 0 #b22007, -1px 0 0 #b22007, 0 2px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 0 #276f57;
+  box-shadow: inset 0 1px 0 #65caa8, 0 -1px 0 #276f57, 0 1px 0 #349574, 1px 0 0 #3aa883, -1px 0 0 #3aa883;
+  background: -moz-linear-gradient(top, #41bb92 0%, #39a480 100%);
+  background: -webkit-linear-gradient(top, #41bb92 0%, #39a480 100%);
+  background: -o-linear-gradient(top, #41bb92 0%, #39a480 100%);
+  background: -ms-linear-gradient(top, #41bb92 0%, #39a480 100%);
+  background: linear-gradient(top, #41bb92 0%, #39a480 100%);
+}
+.butter-btn-green:hover {
+  color: #000;
+  box-shadow: inset 0 1px 0 #78d0b3, 0 -1px 0 #276f57, 0 1px 0 #2f8669, 1px 0 0 #3aa883, -1px 0 0 #3aa883, 0 2px 2px rgba(0, 0, 0, 0.5);
 }
 .btn-light,
 .ui-light a {
@@ -2044,7 +2047,8 @@ header {
   background: -o-linear-gradient(top, #efefef 0%, #e2e2e2 100%);
   background: -ms-linear-gradient(top, #efefef 0%, #e2e2e2 100%);
   background: linear-gradient(top, #efefef 0%, #e2e2e2 100%);
-  box-shadow: -2px -5px 5px 0 rgba(0, 0, 0, 0.6), inset 0 7px 2px -3px rgba(0, 0, 0, 0.4);
+  box-shadow: -2px -5px 5px 0 rgba(0, 0, 0, 0.2);
+  border-left: 1px solid #222;
   overflow: visible;
   z-index: 10000;
 }
@@ -2057,7 +2061,7 @@ header {
   background: -ms-linear-gradient(top, #242f33 0%, #192124 100%);
   background: linear-gradient(top, #242f33 0%, #192124 100%);
   box-shadow: 0 1px 0 rgba(57, 75, 81, 0.25);
-  border-bottom: 5px solid #78b88f;
+  border-bottom: 5px solid #41bb92;
 }
 .butter-editor-header > ul {
   position: absolute;
@@ -2078,10 +2082,10 @@ header {
   clear: both;
 }
 .butter-editor-header > ul > li {
-  float: right;
-}
-.butter-editor-header > ul > li.butter-editor-title {
   float: left;
+}
+.butter-editor-header > ul > li.fl-right {
+  float: right;
 }
 .butter-editor-header > ul > li > a.butter-btn-dark {
   background: none;
@@ -2093,11 +2097,17 @@ header {
   padding: 12.1875px;
 }
 .butter-editor-header > ul > li > a.butter-btn-dark.butter-active {
-  background: #78b88f;
-  text-shadow: 0 1px 1px #46845c;
+  background: #41bb92;
+  text-shadow: 0 1px 1px #276f57;
 }
 .butter-editor-close-btn > i {
   background-position: -456px -72px;
+}
+.butter-editor-panel {
+  display: none;
+}
+.butter-panel-active {
+  display: block;
 }
 .butter-editor-outer {
   -webkit-box-sizing: border-box;
@@ -2109,14 +2119,17 @@ header {
   /* scrollbar */
 
 }
+.butter-editor-breadcrumbs {
+  margin-top: 0;
+  color: #41bb92;
+  font-weight: 600;
+  text-shadow: none;
+  background: #FFF;
+  padding: 15px;
+  border-bottom: 1px solid #CCC;
+}
 .butter-editor-inner {
   padding: 20px;
-}
-.butter-editor-inner h3 {
-  margin-top: 0;
-  color: #444;
-  font-weight: 300;
-  text-shadow: none;
 }
 .butter-editor-inner label {
   font-size: 13px;
@@ -2140,8 +2153,8 @@ header {
 .butter-editor-inner input:focus,
 .butter-editor-inner textarea:focus {
   outline: none;
-  border: 1px solid rgba(203, 36, 8, 0.5);
-  box-shadow: 0 0 4px rgba(203, 36, 8, 0.5);
+  border: 1px solid rgba(65, 187, 146, 0.5);
+  box-shadow: 0 0 1px rgba(65, 187, 146, 0.5);
 }
 .butter-editor-inner textarea {
   min-height: 100px;
@@ -2230,10 +2243,10 @@ header {
   height: 100%;
 }
 .butter-video-container.hover-state {
-  box-shadow: inset 0 0 0 1px #040606, 0 1px 0 0 #2a373c, 0 1px 10px -1px #78b88f;
+  box-shadow: inset 0 0 0 1px #040606, 0 1px 0 0 #2a373c, 0 1px 10px -1px #41bb92;
 }
 .butter-video-container.drag-over-state {
-  box-shadow: inset 0 0 0 1px #040606, 0 1px 0 0 #2a373c, 0 1px 10px 3px #78b88f;
+  box-shadow: inset 0 0 0 1px #040606, 0 1px 0 0 #2a373c, 0 1px 10px 3px #41bb92;
 }
 /*
 
@@ -2289,7 +2302,7 @@ header {
   margin: 0 10px;
 }
 .butter-current-time {
-  color: #78b88f;
+  color: #41bb92;
 }
 .butter-tracks-outer {
   position: absolute;
@@ -2345,7 +2358,7 @@ header {
   padding: 14px;
 }
 .butter-controls:hover .ui-resizable-handle {
-  background: #78b88f;
+  background: #41bb92;
 }
 .butter-controls-inner {
   position: relative
@@ -2375,7 +2388,7 @@ header {
   width: 9px;
   height: 9px;
   border-radius: 12px;
-  background: #78b88f;
+  background: #41bb92;
   border: 3px solid #efefef;
   box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.4);
   z-index: 10000;
@@ -2446,12 +2459,12 @@ header {
 .butter-range .ui-resizable-handle.ui-resizable-w {
   left: -2px;
   cursor: w-resize;
-  background: #78b88f;
+  background: #41bb92;
 }
 .butter-range .ui-resizable-handle.ui-resizable-e {
   right: -2px;
   cursor: e-resize;
-  background: #78b88f;
+  background: #41bb92;
 }
 .butter-scrubber {
   position: absolute;

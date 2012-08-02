@@ -66,7 +66,7 @@
 @baseLight: #EFEFEF;
 @textShadow: 0 -2px 0 #000;
 @rouge: #CB2408;
-@green: #78B88F;
+@green: #41BB92;
 
 
 /*********************************************************
@@ -145,7 +145,8 @@ header {
   margin-left: 3px;
 }
 
-.butter-btn-dark {
+.butter-btn-dark,
+.butter-btn-dark:visited {
   position: relative;
   color: #EEE;
   //border-top: 1px solid #000;
@@ -158,14 +159,15 @@ header {
   }
 }
 
-.butter-btn-red {
-  color: #EEE;
-  text-shadow:0 -1px 0 darken( @rouge, 20% );
-  .btn-shadow( @rouge );
-  .gradient( "vertical", @rouge, darken( @rouge, 6% ) ); 
+.butter-btn-green {
+  position: relative;
+  color: #FFF;
+  text-shadow: 0 1px 0 darken( @green, 20% );
+  .btn-shadow( @green );
+  .gradient( "vertical", @green, darken( @green, 6% ) ); 
   &:hover {
-    color: #FFF;
-    .btn-shadow( @rouge, "hover" );
+    color: #000;
+    .btn-shadow( @green, "hover" );
   }
 }
 
@@ -328,7 +330,7 @@ header {
 */
 
 @inputOutline: #CCC;
-@inputFocus: @rouge;
+@inputFocus: @green;
 @inputText: #555;
 
 @inputTextSize: 13px;
@@ -341,8 +343,8 @@ header {
   bottom: 0;
   width: @editorWidth;
   .gradient( "vertical", @baseLight, darken( @baseLight, 5% ) );
-  box-shadow: -2px -5px 5px 0 fade( #000, 60% ),
-    inset 0 7px 2px -3px fade( #000, 40% );
+  box-shadow: -2px -5px 5px 0 fade( #000, 20% );
+  border-left: 1px solid #222;
   overflow: visible;
   z-index: 10000;
 }
@@ -364,10 +366,10 @@ header {
     .clearfix();
 
     > li {
-      float: right;
+      float: left;
 
-      &.butter-editor-title {
-        float: left;
+      &.fl-right {
+        float: right;
       }
 
       > a.butter-btn-dark {
@@ -396,21 +398,35 @@ header {
     background-position: -456px -72px;
   }
 }
+
+// PANELS
+.butter-editor-panel {
+  display: none;
+}
+
+.butter-panel-active {
+  display: block;
+}
+
 .butter-editor-outer {
   .box-sizing( border-box );
   width: @editorWidth;
   padding-right: 20px; /* scrollbar */
 }
 
+.butter-editor-breadcrumbs {
+  margin-top: 0;
+  color: @green;
+  font-weight: 600;
+  text-shadow: none;
+  background: #FFF;
+  padding: 15px;
+  border-bottom: 1px solid #CCC;
+}
+
 .butter-editor-inner {
   padding: 20px;
 
-  h3{
-    margin-top: 0;
-    color: #444;
-    font-weight: 300;
-    text-shadow: none;
-  }
 
   label {
     font-size: 13px;
@@ -436,7 +452,7 @@ header {
     &:focus {
       outline: none;
       border: 1px solid fade( @inputFocus, 50% );
-      box-shadow: 0 0 4px fade( @inputFocus, 50% );
+      box-shadow: 0 0 1px fade( @inputFocus, 50% );
     }
   }
 

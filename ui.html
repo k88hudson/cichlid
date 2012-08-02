@@ -163,6 +163,21 @@
         </div>
       </div><!-- #settings -->
 
+      <div data-panel="settings-not-logged-in" class="butter-editor-panel">
+        <div class="butter-editor-breadcrumbs">Project Settings</div>
+        <div class="butter-editor-outer">
+          <div class="butter-editor-inner">  
+            <fieldset>
+              <label>Project Title</label>
+              <input type="text" placeholder="My Project">
+            </fieldset>     
+            <fieldset>
+              <a class="butter-btn-green set-hash" href="#settings">Please login to save</a>
+            </fieldset>
+          </div>
+        </div>
+      </div><!-- #settings -->
+
 
     </section>
    <section id="tray" class="butter-tray">
@@ -304,8 +319,12 @@
     // ON LOAD, read hash
     var hash = window.location.hash;
     if ( hash ) {
-      openPanel ( hash );
+      openPanel( hash );
     }
+
+    $( ".set-hash" ).bind( "click", function() {
+      openPanel( this.hash );
+    });
 
     // ON LOAD, SHOW TOOLTIP
     $( "#media-tab" ).append( '<div class="butter-tooltip">' +

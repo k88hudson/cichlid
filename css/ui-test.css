@@ -1829,7 +1829,8 @@ header {
   color: #FFF;
   box-shadow: inset 0 1px 0 #445860, 0 -1px 0 #000000, 0 1px 0 #060809, 1px 0 0 #192124, -1px 0 0 #192124, 0 2px 2px rgba(0, 0, 0, 0.5);
 }
-.butter-btn-green {
+.butter-btn-green,
+.butter-btn-green:visited {
   position: relative;
   color: #FFF;
   text-shadow: 0 1px 0 #276f57;
@@ -1840,7 +1841,8 @@ header {
   background: -ms-linear-gradient(top, #41bb92 0%, #39a480 100%);
   background: linear-gradient(top, #41bb92 0%, #39a480 100%);
 }
-.butter-btn-green:hover {
+.butter-btn-green:hover,
+.butter-btn-green:visited:hover {
   color: #FFF;
   box-shadow: inset 0 1px 0 #78d0b3, 0 -1px 0 #276f57, 0 1px 0 #2f8669, 1px 0 0 #3aa883, -1px 0 0 #3aa883, 0 2px 2px rgba(0, 0, 0, 0.5);
 }

@@ -330,11 +330,19 @@
     $( "#media-tab" ).append( '<div class="butter-tooltip">' +
      '<div>Add your video URL here</div>' +
       '</div>' );
+
+    function hideToolTip() {
+      $( "#media-tab > .butter-tooltip" ).removeClass( "tooltip-on" );
+      document.body.removeEventListener( "click", hideToolTip );
+      document.getElementById( "media-tab" ).removeEventListener( "click", hideToolTip );
+    }
+
     window.setTimeout( function(){
       $( "#media-tab > .butter-tooltip" ).addClass( "tooltip-on" );
-      $( "#media-tab" ).bind( "hover", function() {
-        $( "#media-tab > .butter-tooltip" ).removeClass( "tooltip-on" );
-      });
+      $( "#media-tab" ).bind( "hover", hideToolTip );
+
+      document.body.addEventListener( "click", hideToolTip, false );
+
     }, 1000 );
 
     // EDITOR STUFF

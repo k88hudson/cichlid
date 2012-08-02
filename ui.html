@@ -32,6 +32,7 @@
             <div class="butter-btn-group">
               <a class="butter-btn-dark"><span class="butter-avatar"></span><span class="mobile-hide">brett_gaylor</a>
               <a class="butter-btn-dark"><strong><span class="mobile-hide">Project: </strong>Newscaster</span></a>
+              <a href="#settings" class="butter-btn-dark"><i class="icon icon-only icon-white icon-cog"></i></a>
             </div>
             
             <a id="butter-btn-save" class="butter-btn-green">Save</a>
@@ -53,10 +54,11 @@
     <section id="editor" class="butter-editor">
       <header class="butter-editor-header">
         <ul>
-          <li><a href="#media" class="butter-btn-dark"><i class="icon icon-white icon-film"></i>Media</a></li>
+          <li><a href="#media" id="media-tab" class="butter-btn-dark"><i class="icon icon-white icon-film"></i>Media</a></li>
           <li><a href="#popcorn" class="butter-btn-dark butter-active"><i class="icon icon-white icon-comment"></i>Popcorn</a></li>
           <li><a href="#share" class="butter-btn-dark"><i class="icon icon-white icon-share"></i>Share</a></li>
-          <li class="fl-right"><a href="#settings" class="butter-btn-dark"><i class="icon icon-only icon-white icon-cog"></i></a></li>  
+          <li><a href="#settings" class="butter-btn-dark"><i class="icon icon-only icon-white icon-cog"></i></a></li> 
+          <li class="fl-right"><a href="#collapse" class="butter-btn-dark butter-editor-close-btn"><i class="icon icon-only icon-white icon-chevron-right"></i></a></li>  
         </ul>
       </header>
 
@@ -284,16 +286,33 @@
       addVisualizationEl( butter.orderedTrackEvents[ i ] );
     }
 
+    // ON LOAD, SHOW TOOLTIP
+    $( "#media-tab" ).append( '<div class="butter-tooltip">' +
+     '<div>Add your video URL here</div>' +
+      '</div>' );
+    window.setTimeout( function(){
+      $( "#media-tab > .butter-tooltip" ).addClass( "tooltip-on" );
+      $( "#media-tab" ).bind( "hover", function() {
+        $( "#media-tab > .butter-tooltip" ).removeClass( "tooltip-on" );
+      });
+    }, 1000 );
+
     // EDITOR STUFF
     $( ".butter-editor-header > ul a" ).bind( "click", function( e ) {
       e.preventDefault();
       var panel = this.hash.replace( "#", "" );
 
-      $( ".butter-panel-active" ).removeClass( "butter-panel-active" );
-      $( "[data-panel=\"" + panel + "\"]" ).addClass( "butter-panel-active" );
+      if ( panel === "collapse" ) {
+        document.body.classList.toggle( "butter-editor-collapsed" );
+      } else {
+        $( ".butter-panel-active" ).removeClass( "butter-panel-active" );
+        $( "[data-panel=\"" + panel + "\"]" ).addClass( "butter-panel-active" );
 
-      $( ".butter-active" ).removeClass( "butter-active" );
-      $( this ).addClass( "butter-active" );
+        $( ".butter-active" ).removeClass( "butter-active" );
+        $( this ).addClass( "butter-active" );
+      }
+
+      
 
     });
 

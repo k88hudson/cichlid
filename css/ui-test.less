@@ -218,6 +218,12 @@ header {
 }
 
 .butter-tooltip {
+
+  &.tooltip-on {
+    opacity: 1;
+    > div { margin-top: 10px; }
+  }
+
   opacity: 0;
   position: absolute;
   top: 90%;
@@ -227,12 +233,13 @@ header {
   z-index: 100000;
   overflow: hidden;
   .transition( all .3s ease );
+
   > div {
     position: relative;
     line-height: 1.4;
     margin-top: -1000px;
     width: 120px;
-    background: @baseLight;
+    background: #FFF;
     text-shadow: none;
     color: #444;
     font-size: 12px;
@@ -240,7 +247,7 @@ header {
     .box-sizing( border-box );
     border-radius: 2px;
     
-    border: 1px solid #999;
+    border: 1px solid #CCC;
     box-shadow: 1px 3px 7px -2px rgba( 0, 0, 0, .5 );
 
     &:after,

@@ -75,6 +75,7 @@
 
 html {
   background: @noise #121212;
+   .gradient( "wash", darken( @baseDark, 5% ), darken( @baseDark, 10% ), lighten( @baseDark, 5% ), @noiseLight );
 }
 
 .butter-wrapper {
@@ -280,6 +281,10 @@ header {
   z-index: 100;
   padding: 20px 0;
   .clearfix();
+    position: absolute;
+  left: 10px;
+  top: 0;
+  width: 100%;
 }
 
 .butter-logo {
@@ -294,6 +299,7 @@ header {
 .butter-header-buttons-left {
   margin-top: 15px;
   display: inline-block;
+
   line-height: 24px;
   .clearfix();
   > a {
@@ -485,11 +491,16 @@ header {
 .btn-events {
   position: relative;
   padding: 10px;
-  width: 112px;
+  width: 100px;
+  height: 30px;
   margin-bottom: 10px;
   margin-right: 10px;
   line-height: 25px;
   cursor: move;
+
+   > span {
+    //display: none;
+  }
 
   &:hover {
     left: -2px;
@@ -501,9 +512,10 @@ header {
 
 .icon-plugin {
   float: left;
-  width: 25px;
+  display: inline-block;
   height: 25px;
-  margin-right: 6px;
+  width: 25px;
+  margin-right: 10px;
 }
 
 .plugin-text {
@@ -542,12 +554,12 @@ header {
   top: 0;
   right: @editorWidth;
   bottom: @trayHeight;
-  .gradient( "wash", darken( @baseDark, 5% ), darken( @baseDark, 10% ), lighten( @baseDark, 5% ), @noiseLight );
+ 
 }
 
 .butter-embed-container {
   .videoSize( @videoDesktop );
-  margin: 0 auto;
+  margin: 120px auto;
 }
 
 .butter-media-source {

@@ -32,20 +32,25 @@
             <a class="btn browser-home" href="#"><i class="icon icon-home"></i></a>
           </span>
           <span class="input-container">
-            <input type="text" value="localhost:8888">
+            <input type="text" id="url-location" value="localhost:8888">
           </span>
           <span class="group-right">
             <a class="btn browser-close" href="#"><i class="icon icon-close"></i></a>
           </span>
         </header>
-        <nav>
-          <ul class="tabs">
-            <li class="tabs-active"><a href="#tab-1">This is a tab</a></li>
-            <li><a href="#tab-2">This is a tab too</a></li>
-          </ul>
-        </nav>
         <div class="browser-content">
-          <iframe src="index.html"></iframe>
+          <nav>
+            <ul class="tabs">
+              <li><a href="#tab-2"><img src="http://g.etfv.co/http://www.twitter.com"> Twitter</a></li>
+              <li><a href="#tab-2"><img src="http://g.etfv.co/http://mail.google.com"> Gmail</a></li>
+              <li><a href="#tab-2"><img src="http://g.etfv.co/http://www.facebook.com"> Facebook</a></li>
+              <hr>
+              <li class="tabs-active"><a href="#tab-1">Water for Elephants - Movie reference</a></li>
+            </ul>
+          </nav>
+          <div class="iframe-container">
+            <iframe id="browser-iframe" src="index.html"></iframe>
+          </div>
         </div>
       </div>
       <div class="iphone-ui">
@@ -69,6 +74,11 @@
   </footer>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>
+    document.getElementById( "url-location" ).addEventListener( "change", function() {
+      document.getElementById( "browser-iframe" ).src = this.value;
+    }, false );
+  </script>
   <script src="js/script.js"></script>
 </body>
 </html>

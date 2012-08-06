@@ -3,6 +3,7 @@ By: @k88hudson
 -------------------------------------------------- */
 @HEADER_HEIGHT: 300px;
 @MAX_WIDTH: 1080px;
+@tabsWidth: 150px;
 
 @bg: #CCC;
 @bg2: lighten( @bg, 15% );
@@ -136,6 +137,7 @@ body {
 * Browser Shells
 */
 .browser-shell {
+  position: relative;
   min-height: 400px;
   background: #FFF;
   border-radius: 4px;
@@ -245,30 +247,27 @@ body {
     box-shadow: none;
   }
   .tabs {
+    position: absolute;
+    width: @tabsWidth;
+    top: 0;
+    bottom: 0;
     list-style: none;
-    padding: 0;
+    padding: 0 2px;
     margin: 0;
-    *zoom: 1;
-    *zoom: 1;
-    padding-left: 5px;
+    padding-left: 2px;
     padding-bottom: 2px;
     background: -moz-linear-gradient(top, #acacac 0%, #b9b9b9 100%);
     background: -webkit-linear-gradient(top, #acacac 0%, #b9b9b9 100%);
     background: -o-linear-gradient(top, #acacac 0%, #b9b9b9 100%);
     background: -ms-linear-gradient(top, #acacac 0%, #b9b9b9 100%);
     background: linear-gradient(top, #acacac 0%, #b9b9b9 100%);
-    border-bottom: 1px solid #8c8c8c;
+    border-right: 1px solid #999;
+    .box-sizing( border-box );
+    .clearfix();
   }
-  .tabs:before,
-  .tabs:after {
-    content: "";
-    display: table;
-  }
-  .tabs:after {
-    clear: both;
-  }
+
   .tabs > li {
-    float: left;
+    //float: left;
   }
   .tabs > li > a {
     background: -moz-linear-gradient(top, #c6c6c6 0%, #dfdfdf 100%);
@@ -284,7 +283,6 @@ body {
     border: 1px solid #8c8c8c;
     border-top: none;
     border-radius: 0 0 4px 4px;
-    margin-right: 2px;
   }
   .tabs > li.tabs-active {
     position: relative;
@@ -294,12 +292,17 @@ body {
     color: #444444;
     padding-top: 3px;
   }
+  .iframe-container {
+    height: 100%;
+    padding-left: @tabsWidth;
+  }
   iframe {
-    border: none;
     width: 100%;
+    border: none;
     height: 100%;
   }
   .browser-content {
+    position: relative;
     height: 500px;
   }
 

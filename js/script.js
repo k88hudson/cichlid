@@ -3,7 +3,7 @@
 */
 document.addEventListener( "DOMContentLoaded", function(){
 
-  var HEADER_HEIGHT = 300,
+  var HEADER_HEIGHT = 150,
       switched = false;
 
   function each( list, callback ) {

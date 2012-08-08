@@ -102,14 +102,31 @@
       <div data-panel="media" class="butter-editor-panel">
         <div class="butter-editor-breadcrumbs">Change Media Source</div>
         <div class="butter-editor-outer">
-          <div class="butter-editor-inner">  
-            <fieldset>
-              <label>Add a URL</label>
-              <input type="text" placeholder="http://" value="http://ia700300.us.archive.org/9/items/nozon-test1/Nozon-test_512kb.mp4">
-            </fieldset>          
+          <div class="butter-editor-inner"> 
+            <fieldset id="change-media-fieldset">
+              <label>New Media Source</label>
+              <input id="new-media-thing" type="text" placeholder="http://" value="">
+            </fieldset>  
             <fieldset>
           
+                <div id="change-media-autocomplete">
+                  <label>Note: you need ogv and webm versions for this to work in all browsers. <a target="_blank" href="http://diveintohtml5.info/video.html">Learn more</a></label>
+                  <p><input type="text" placeholder="http://"></p>
+                <p><input type="text" placeholder="http://"></p>
+                </div>
+                  <p>
+                    <a id="change-media" class="butter-btn-green"><i class="icon icon-white icon-plus"></i>New Media Source</a>
+                    <a id="change-media-cancel" class="btn-light">Cancel</a></p>
             </fieldset>
+            <fieldset class="new-media">
+              <label>Current Media</label>
+                <p><input type="text" placeholder="http://"value="http://wwww.dasdasd.asd.asd.asdasdasdasdas"></p>
+                  <p><input type="text" placeholder="http://"value="http://wwww.dasdasd.asd.asd.asdasdasdasdas"></p>
+              <p><input type="text" placeholder="http://"value="http://wwww.dasdasd.asd.asd.asdasdasdasdas"></p>
+               <p><a id="change-media" class="btn-light">Add alternate</a></p>
+            </fieldset>  
+
+    
           </div>
         </div>
       </div><!-- #media -->
@@ -412,6 +429,30 @@
     // EDIT MEDIA BUTTON
     $( "#edit-media" ).bind( "click", function(){
       $( ".edit-media-overlay" ).toggleClass( "off" );
+    });
+
+    $( "#change-media" ).click( function() {
+      $( "#change-media-fieldset" ).fadeIn();
+      $( "#change-media-cancel" ).fadeIn();
+      $(this).text( "Update");
+      $(".new-media").css( "opacity", 0.5 );
+    });
+
+    $( "#new-media-thing" ).bind( "keydown", function() {
+      if( this.value.length > 3 ) {
+        $( "#change-media-autocomplete" ).fadeIn();
+      } else {
+        $( "#change-media-autocomplete" ).fadeOut();
+      }
+      
+    });
+
+    $( "#change-media-cancel" ).click( function() {
+      $( "#change-media-fieldset" ).fadeOut();
+      $( this ).fadeOut();
+      $( "#change-media").html( "<i class=\"icon icon-white icon-plus\"></i>New Media Source");
+      $(".new-media").css( "opacity", 1);
+      $( "#change-media-autocomplete" ).fadeOut();
     });
 
     document.getElementById( "butter-media-input" ).addEventListener( "keydown", function() {

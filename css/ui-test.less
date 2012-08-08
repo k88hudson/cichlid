@@ -376,7 +376,7 @@ header {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
+  bottom: @trayHeight;
   width: @editorWidth;
   .gradient( "vertical", @baseLight, darken( @baseLight, 5% ) );
   //box-shadow: -2px -5px 5px 0 fade( #000, 20% );
@@ -641,10 +641,11 @@ header {
   position: absolute;
   bottom: 0;
   left: 0;
-  right: @editorWidth;
+  right: 0;
   height: @trayHeight;
   //background: darken( @baseDark, 5% );
   .gradient( "vertical", darken( @baseLight, 10% ), darken( @baseLight, 5% ) );
+  z-index: 10000000;
 }
 
 .butter-btn-media {

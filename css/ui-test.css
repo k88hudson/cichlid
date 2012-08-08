@@ -2063,7 +2063,7 @@ header {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
+  bottom: 231px;
   width: 352.5px;
   background: -moz-linear-gradient(top, #f7f8f8 0%, #e9ecec 100%);
   background: -webkit-linear-gradient(top, #f7f8f8 0%, #e9ecec 100%);
@@ -2332,13 +2332,14 @@ header {
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 352.5px;
+  right: 0;
   height: 231px;
   background: -moz-linear-gradient(top, #dce0e0 0%, #e9ecec 100%);
   background: -webkit-linear-gradient(top, #dce0e0 0%, #e9ecec 100%);
   background: -o-linear-gradient(top, #dce0e0 0%, #e9ecec 100%);
   background: -ms-linear-gradient(top, #dce0e0 0%, #e9ecec 100%);
   background: linear-gradient(top, #dce0e0 0%, #e9ecec 100%);
+  z-index: 10000000;
 }
 .butter-btn-media {
   float: left;

@@ -2351,7 +2351,7 @@ header {
   position: relative;
   z-index: 20000;
   float: left;
-  width: 26px;
+  width: 170.25px;
   background: -moz-linear-gradient(top, #dce0e0 0%, #e9ecec 100%);
   background: -webkit-linear-gradient(top, #dce0e0 0%, #e9ecec 100%);
   background: -o-linear-gradient(top, #dce0e0 0%, #e9ecec 100%);
@@ -2360,6 +2360,30 @@ header {
   height: 231px;
   border-right: 1px solid #a5b1b1;
   box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
+}
+.butter-tray-sidebar-controls {
+  height: 40px;
+  padding: 8px;
+  background: #0c293a;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.butter-time {
+  color: #f7f8f8;
+  font-size: 12px;
+  margin: 0 10px;
+}
+.butter-current-time {
+  color: #41bb92;
+}
+.butter-tracks-outer {
+  position: absolute;
+  left: 170.25px;
+  height: 100%;
+  right: 0;
 }
 .butter-tracks-container {
   position: relative;
@@ -2398,7 +2422,7 @@ header {
 .butter-controls {
   position: absolute;
   top: 0;
-  left: 26px;
+  left: 0;
   right: 0;
   background: #0c293a;
   height: 40px;
@@ -2406,38 +2430,27 @@ header {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
+  padding: 14px;
 }
 .butter-controls:hover .ui-resizable-handle {
   background: #41bb92;
 }
 .butter-controls-inner {
-  position: absolute;
-  left: 10px;
-  right: 10px;
+  position: relative
   display: block;
-  height: 8px;
-  top: 50%;
-  margin-top: -4px;
+  height: 10px;
   display: block;
-  background: rgba(231, 238, 241, 0.3);
-  border-radius: 5px;
-}
-.butter-controls-inner .butter-controls-played {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200px;
-  height: 8px;
   background: #E7EEF1;
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px;
+  overflow-x: hidden;
 }
-.butter-controls-inner .butter-scrubber-large {
+.butter-scrubber-large {
   position: absolute;
   cursor: move;
   z-index: 100000;
-  top: 8px;
+  top: 23px;
   left: 200px;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   width: 1px;
   height: 100px;
   background: rgba(203, 36, 8, 0.5);
@@ -2454,48 +2467,26 @@ header {
   box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.4);
   z-index: 10000;
 }
+.butter-tray-layers-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 5px;
+}
+.butter-tray-layers-list li {
+  line-height: 30px;
+  text-align: center;
+  color: #999;
+  border-top: 1px solid #cccccc;
+}
 /*********************************************************
-* Top + Visualization
+* Visualization
 */
-.butter-tray-top {
-  position: relative;
-  background: #f7f8f8;
-  border: 1px solid #cccccc;
-  border-width: 1px 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.butter-tray-sidebar-controls {
-  height: 48.75px;
-  padding: 10px;
-  width: 180px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-  border-right: 1px solid #cccccc;
-}
-.butter-time {
-  color: #0c293a;
-  font-size: 12px;
-  margin: 0 10px;
-}
-.butter-current-time {
-  color: #41bb92;
-}
-.butter-tracks-outer {
-  position: absolute;
-  left: 0;
-  height: 100%;
-  right: 0;
-}
 .butter-visuals {
   position: absolute;
-  top: 7px;
-  left: 185px;
-  right: 5px;
+  bottom: 10px;
+  left: 0;
+  right: 0;
   z-index: 100;
   background: -moz-linear-gradient(top, #dce0e0 0%, #e9ecec 100%);
   background: -webkit-linear-gradient(top, #dce0e0 0%, #e9ecec 100%);

@@ -238,41 +238,42 @@
 
     </section>
    <section id="tray" class="butter-tray">
-      <div class="butter-tray-top">
-        <div class="butter-tray-sidebar-controls">
-          <a class="butter-btn-green butter-play-btn"><i class="icon icon-white icon-only icon-play"></i></a>
-          <span class="butter-time"><span class="butter-current-time">15.42</span> / 24.13</span>
-          <a class="butter-btn-green butter-volume-btn"><i class="icon icon-white icon-only icon-volume-down"></i></a>
-        </div>
-         <div id="butter-visuals" class="butter-visuals">
-          <div id="butter-controls-inner" class="butter-visuals-inner">
-            <ul id="butter-visualization"></ul>
-            <span id="butter-range" class="butter-range">  
-            </span>
-            <span id="butter-scrubber" class="butter-scrubber">
-            </span> 
-          </div>
-        </div>
-      </div>
     <div class="butter-tray-sidebar">
-      <div class="butter-tray-layers"></div>
+      <div class="butter-tray-sidebar-controls">
+         <a class="butter-btn-green butter-play-btn"><i class="icon icon-white icon-only icon-play"></i></a>
+         <span class="butter-time"><span class="butter-current-time">15.42</span> / 24.13</span>
+         <a class="butter-btn-green butter-volume-btn"><i class="icon icon-white icon-only icon-volume-down"></i></a>
+      </div>
+      <div class="butter-tray-layers">
+        <ul class="butter-tray-layers-list">
+          <li>Layer 3</li>
+          <li>Layer 2</li>
+          <li>Layer 1</li>
+        </ul>
+      </div>
     </div>
- 
     <div class="butter-tracks-outer">
       <div id="butter-tracks-container" class="butter-tracks-container">
+          
           <div id="butter-tracks" class="butter-tracks">
             <div id="controls" class="butter-controls">
-              <div class="butter-controls-inner">
-                <div class="butter-controls-played"></div>
-                <span id="butter-scrubber-large" class="butter-scrubber-large">
-                  <span class="butter-scrubber-head"></span>
-                </span> 
-              </div>
-
+              <div class="butter-controls-inner"></div>
             </div>
-            
+            <span id="butter-scrubber-large" class="butter-scrubber-large">
+              <span class="butter-scrubber-head"></span>
+            </span> 
            <ul></ul> 
           </div>
+      </div>
+
+      <div id="butter-visuals" class="butter-visuals">
+        <div id="butter-controls-inner" class="butter-visuals-inner">
+          <ul id="butter-visualization"></ul>
+          <span id="butter-range" class="butter-range">  
+          </span>
+          <span id="butter-scrubber" class="butter-scrubber">
+          </span> 
+        </div>
       </div>
     </div>
   </section>
@@ -483,11 +484,10 @@
 
     $( ".butter-scrubber-large" ).draggable({ 
       axis: "x",
-      containment: ".butter-controls-inner",
+      containment: "#butter-controls-inner",
       drag: function( event, ui ) {
         var newScrubberPos = trayToViewer( ui.position.left );
         document.getElementById( "butter-scrubber" ).style.left = newScrubberPos + "px";
-        document.querySelector( ".butter-controls-played" ).style.width = ui.position.left + "px";
 
       },
       stop: function( event, ui ) {

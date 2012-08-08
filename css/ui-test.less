@@ -37,11 +37,11 @@
 @editorWidth: @grid-6;
 @editorHeaderHeight: @grid-1;
 @trayHeight: @grid-4;
-@traySidebarWidth: @grid-3;
 @collapsed: @grid-1;
-@controlsHeight: @grid-1; // same a collapsed
-
-@butterVisualsHeight: @grid-1;
+@traySidebarWidth: 26px;
+@controlsHeight: 40px; 
+@controlsPlayPause: 180px;
+@butterVisualsHeight: @grid-1; // same a collapsed
 
 // Logo
 @logoWidth: 52px;
@@ -62,11 +62,17 @@
 @maxZ: 10000;
 
 // Colors
-@baseDark: #242F33;
+@baseDark: #0C293A;
 @baseLight: #EFEFEF;
 @textShadow: 0 -2px 0 #000;
 @rouge: #CB2408;
 @green: #41BB92;
+
+//Colors
+@baseHeader: #FFFFFF;
+@baseStage: #E8EEF1;
+@baseLight: #F7F8F8;
+@baseLightOutline: #CCC;
 
 
 /*********************************************************
@@ -74,8 +80,6 @@
 */
 
 html {
-  background: @noise #121212;
-   .gradient( "wash", darken( @baseDark, 5% ), darken( @baseDark, 10% ), lighten( @baseDark, 5% ), @noiseLight );
 }
 
 .butter-wrapper {
@@ -186,16 +190,15 @@ header {
 
 .butter-play-btn,
 .butter-volume-btn {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   padding: 0;
-  border-radius: 30px;
+  border-radius: 25px;
   text-align: center;
-  background: fade( #FFF, 20% );
   border: none;
   box-shadow: none;
   > i {
-    margin-top: 5px;
+    margin-top: 3px;
   }
 }
 
@@ -248,7 +251,7 @@ header {
     padding: 10px;
     .box-sizing( border-box );
     border-radius: 2px;
-    
+    text-align: center;
     border: 1px solid #CCC;
     box-shadow: 1px 3px 7px -2px rgba( 0, 0, 0, .5 );
 
@@ -282,19 +285,22 @@ header {
 
 .butter-header {
   z-index: 100;
-  padding: 20px 0;
+  padding: 18px 0;
   .clearfix();
-    position: absolute;
-  left: 10px;
+  position: absolute;
+  left: 0;
   top: 0;
   width: 100%;
+  //background: @baseHeader;
+  //border-bottom: 1px solid @baseLightOutline;
 }
 
 .butter-logo {
   position: relative;
+  left: 20px;
   float: left;
   height: 65px;
-  width: 170px;
+  width: @grid-3;
   background: url( ../img/logo-words.png ) no-repeat;
   z-index: 100000;
 }
@@ -302,11 +308,16 @@ header {
 .butter-header-buttons-left {
   margin-top: 15px;
   display: inline-block;
-
   line-height: 24px;
   .clearfix();
   > a {
     float: left;
+  }
+  .btn-light {
+    border-bottom: 1px solid darken( @baseLightOutline, 20% );
+    border-right: 1px solid darken( @baseLightOutline, 10% );
+    .gradient( "vertical",  #FFF, @baseLight );
+    padding: 7px 10px;
   }
 }
 
@@ -318,6 +329,9 @@ header {
     position: relative;
     float: left;
     border-radius: 0;
+    box-shadow: none;
+    //box-shadow: 0 -1px 0 ;
+
     &:first-child {
       left: 3px;
       border-radius: 2px 0 0 2px;
@@ -338,7 +352,13 @@ header {
 }
 
 #butter-btn-save {
+  margin-top: 2px;
   margin-left: 10px;
+  box-shadow: inset 0 1px 0 lighten( @green, 10% ),
+    0 1px 0 darken( @green, 20% ),
+    0 -1px 0 darken( @green, 10% ),
+    1px 0 0 darken( @green, 5% ),
+    1px 0 0 darken( @green, 5% );
 }
 
 /*********************************************************
@@ -359,8 +379,8 @@ header {
   bottom: 0;
   width: @editorWidth;
   .gradient( "vertical", @baseLight, darken( @baseLight, 5% ) );
-  box-shadow: -2px -5px 5px 0 fade( #000, 20% );
-  border-left: 1px solid #222;
+  //box-shadow: -2px -5px 5px 0 fade( #000, 20% );
+  border-left: 1px solid @baseLightOutline;
   overflow: visible;
   z-index: 10000;
 }
@@ -369,24 +389,18 @@ header {
   position: relative;
   height: @editorHeaderHeight;
   .gradient( "vertical", @baseDark, darken( @baseDark, 5% ) );
-  box-shadow: 0 1px 0 fade( lighten( @baseDark, 10% ), 25%);
   border-bottom: 5px solid @green;
 
   > ul {
+    display: inline-block;
     position: absolute;
-    bottom: 0;
+    right: 0;
     list-style: none;
     margin: 0;
-    padding: 0;
-    width: 100%;
     .clearfix();
 
     > li {
       float: left;
-
-      &.fl-right {
-        float: right;
-      }
 
       > a.butter-btn-dark {
         background: none;
@@ -407,6 +421,14 @@ header {
     }
 
   }
+}
+
+.butter-editor-header-title {
+  float: left;
+  color: #FFF;
+  font-size: 15px;
+  line-height: 45px;
+  margin-left: 10px;
 }
 
 .butter-editor-close-btn {
@@ -493,13 +515,16 @@ header {
 
 .btn-events {
   position: relative;
-  padding: 10px;
-  width: 100px;
+  
+  width: 100%;
   height: 30px;
   margin-bottom: 10px;
-  margin-right: 10px;
+  margin-right: 5px;
   line-height: 25px;
   cursor: move;
+  .button2( #FFF, 1%, #333, 3px, 10% );
+  padding: 5px;
+  font-size: 14px;
 
    > span {
     //display: none;
@@ -519,6 +544,7 @@ header {
   height: 25px;
   width: 25px;
   margin-right: 10px;
+  margin-left: 5px;
 }
 
 .plugin-text {
@@ -557,7 +583,7 @@ header {
   top: 0;
   right: @editorWidth;
   bottom: @trayHeight;
- 
+  .gradient( "vertical", @baseStage, darken( @baseStage, 5% );
 }
 
 .butter-embed-container {
@@ -566,17 +592,30 @@ header {
 }
 
 .butter-media-source {
-  padding: 10px 0;
+  position: relative;
+  left: -45px;
+  top: 5px;
+}
+
+#edit-media {
+  > span {
+    display: none;
+  }
+  &:hover {
+    z-index: 1000;
+    > span {
+      display: inline;
+    }
+  }
 }
 
 .butter-video-container {
+  background: #000;
   position: relative;
   width: 100%;
   height: 100%;
-  box-shadow: inset 0 0 0 1px darken( @baseDark, 15% ),
-    0 1px 0 0 lighten( @baseDark, 3% );
+  box-shadow: 0 22px 8px -20px lighten( @baseDark, 3% );
   .box-sizing( border-box );
-  background: darken( @baseDark, 10% );
   video,
   iframe {
     width: 100%;
@@ -584,15 +623,11 @@ header {
   }
 
   &.hover-state {
-    box-shadow: inset 0 0 0 1px darken( @baseDark, 15% ),
-    0 1px 0 0 lighten( @baseDark, 3% ),
-    0 1px 10px -1px @green;
+    box-shadow: 0 1px 0 10px @green;
   }
 
   &.drag-over-state {
-    box-shadow: inset 0 0 0 1px darken( @baseDark, 15% ),
-    0 1px 0 0 lighten( @baseDark, 3% ),
-    0 1px 10px 3px @green;
+    box-shadow: 0 1px 0 20px @green;
   }
 
 }
@@ -631,32 +666,6 @@ header {
   border-right: 1px solid darken( @baseLight, 30% );
   box-shadow: 0 2px 4px 1px fade( #000, 20% );
   //  inset 0 7px 2px -3px fade( #000, 40% );
-}
-
-.butter-tray-sidebar-controls {
-  height: @controlsHeight;
-  padding: 10px;
-  background: @baseDark;
-  width: 100%;
-  .box-sizing( border-box );
-}
-
-.butter-time {
-  color: @baseLight;
-  font-size: 12px;
-  margin: 0 10px;
-}
-
-.butter-current-time {
-  color: @green;
-}
-
-
-.butter-tracks-outer {
-  position: absolute;
-  left: @traySidebarWidth;
-  height: 100%;
-  right: 0;
 }
 
 .butter-tracks-container {
@@ -698,12 +707,11 @@ header {
 .butter-controls {
   position: absolute;
   top: 0;
-  left: 0;
+  left: @traySidebarWidth;
   right: 0;
   background: @baseDark;
   height: @controlsHeight;
   .box-sizing( border-box );
-   padding: 14px;
 
   &:hover .ui-resizable-handle {
     background: @green;
@@ -712,27 +720,43 @@ header {
 }
 
 .butter-controls-inner {
-  position: relative
+  @_innerHeight: @controlsHeight / 5;
+  position: absolute;
+  left: 10px;
+  right: 10px;
   display: block;
-  height: 10px;
-  margin-top: 5px;
+  height: @_innerHeight;
+  top: 50%;
+  margin-top: -@_innerHeight / 2;
   display: block;
-  background: #E7EEF1;
+  background: fade( #E7EEF1, 30% );
   border-radius: 5px;
-  overflow-x: hidden;
+
+  .butter-controls-played {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: @_innerHeight;
+    background: #E7EEF1;
+    border-radius: 5px 0 0 5px;
+  }
+
+  .butter-scrubber-large {
+    position: absolute;
+    cursor: move;
+    z-index: 100000;
+    top: @_innerHeight;
+    left: 200px;
+    padding-bottom: 100px;
+    width: 1px;
+    height: 100px;
+    background: fade( @rouge, 50% );
+  }
+
 }
 
-.butter-scrubber-large {
-  position: absolute;
-  cursor: move;
-  z-index: 100000;
-  top: 28px;
-  left: 200px;
-  padding-bottom: 50px;
-  width: 1px;
-  height: 100px;
-  background: fade( @rouge, 50% );
-}
+
 
 .butter-scrubber-head {
   @_scrubberHeadSize: 12px;
@@ -752,14 +776,48 @@ header {
 }
 
 /*********************************************************
-* Visualization
+* Top + Visualization
 */
+
+
+.butter-tray-top {
+  position: relative;
+  background: @baseLight;
+  border: 1px solid @baseLightOutline;
+  border-width: 1px 0;
+  .box-sizing( border-box );
+}
+
+.butter-tray-sidebar-controls {
+  height: @butterVisualsHeight;
+  padding: 10px;
+  width: @controlsPlayPause;
+  .box-sizing( border-box );
+  border-right: 1px solid @baseLightOutline;
+}
+
+.butter-time {
+  color: @baseDark;
+  font-size: 12px;
+  margin: 0 10px;
+}
+
+.butter-current-time {
+  color: @green;
+}
+
+.butter-tracks-outer {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  right: 0;
+}
 
 .butter-visuals {
   position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
+  top: 7px;
+  left: @controlsPlayPause + 5px;
+  right: 5px;
   z-index: 100;
   .gradient( "vertical", darken( @baseLight, 10% ), darken( @baseLight, 5% ) );
   border: 1px solid rgba(57, 75, 81, 0.25);
@@ -791,7 +849,7 @@ header {
   li {
     position: absolute;
     height: 3px;
-    background: @baseDark;
+    background: #999;
   }
 }
 
@@ -894,7 +952,7 @@ header {
     right: 0;
   }
   .butter-editor {
-    width: 0;
+    right: -@editorWidth;
   }
   .butter-tray {
     right: 0;
@@ -902,8 +960,14 @@ header {
   .butter-stage {
     right: 0;
   }
-  .butter-editor-close-btn > i {
-    background-position: -432px -72px; // left
+  .butter-editor-close-btn {
+    position: absolute;
+    display: block;
+    left: -200px;
+     > i {
+      background-image: url( ../img/glyphicons-halflings.png );
+      background-position: -432px -72px; // left
+    }
   }
 }
 
